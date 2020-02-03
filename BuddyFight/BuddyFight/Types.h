@@ -31,3 +31,10 @@ enum CollisionMask
 {
 	NONE
 };
+
+enum Shape
+{
+	NONE,
+	CIRCLE,
+	SQUARE
+};

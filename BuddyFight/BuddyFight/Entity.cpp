@@ -10,7 +10,8 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	rotation(0.0f),
 	scale(V2ONE),
 	active(true),
-	mask(NONE),
+	mask(CollisionMask::NONE),
+	shape(Shape::NONE),
 	overlapVector(V2ZERO),
 	forwardVector(V2UP),
 	parent(NULL)
@@ -129,6 +130,16 @@ Texture* Entity::GetTexture()
 	return texture;
 }
 
+CollisionMask Entity::GetMask()
+{
+	return mask;
+}
+
+Shape Entity::GetShape()
+{
+	return shape;
+}
+
 void Entity::SetForwardVector(Vector2 fVector)
 {
 	forwardVector = fVector;
@@ -156,6 +167,11 @@ bool Entity::CheckCollision(Entity* other)
 {
 	bool colliding = false;
 
+	float diffX = 0.0f;
+	float diffY = 0.0f;
+
+
+	
 	float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
 	float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
 	float aTop = GetPosition().y - (texture->GetHeight() * GetScale().y / 2);
@@ -164,50 +180,124 @@ bool Entity::CheckCollision(Entity* other)
 	float bRight = other->GetPosition().x + (other->texture->GetWidth() * other->GetScale().x / 2);
 	float bTop = other->GetPosition().y - (other->texture->GetHeight() * other->GetScale().y / 2);
 	float bBottom = other->GetPosition().y + (other->texture->GetHeight() * other->GetScale().y / 2);
-
-	if (aBottom >= bTop &&
-		aTop <= bBottom &&
-		aLeft <= bRight &&
-		aRight >= bLeft)
+	overlapVector = Vector2(0.0f, 0.0f);
+	Vector2 difference = GetPosition() - other->GetPosition();
+	
+	if (shape == Shape::SQUARE && other->GetShape() == Shape::SQUARE)
 	{
-		colliding = true;
-		float diffX = 0.0f;
-		float diffY = 0.0f;
-		overlapVector = Vector2(0.0f, 0.0f);
-		if (GetPosition().x >= other->GetPosition().x)
+		if (aBottom >= bTop &&
+			aTop <= bBottom &&
+			aLeft <= bRight &&
+			aRight >= bLeft)
 		{
-			diffX = bRight - aLeft + 1.0f;
+			colliding = true;
+		}
+	}
+	else if (shape == Shape::SQUARE && other->GetShape() == Shape::CIRCLE)
+	{
+		if (aLeft > other->GetPosition().x)
+		{
+			difference.x = aLeft;
+		}
+		else if (aRight < other->GetPosition().x)
+		{
+			difference.x = aRight;
 		}
 		else
 		{
-			diffX = -(aRight - bLeft) - 1.0f;
+			difference.x = other->GetPosition().x;
 		}
 
-		if (GetPosition().y >= other->GetPosition().y)
+		if (aTop > other->GetPosition().y)
 		{
-			diffY = bBottom - aTop + 1.0f;
+			difference.y = aTop;
+		}
+		else if (aBottom < other->GetPosition().y)
+		{
+			difference.y = aBottom;
 		}
 		else
 		{
-			diffY = -(aBottom - bTop) - 1.0f;
+			difference.y = other->GetPosition().y;
 		}
 
-		if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
+		if (difference.GetMagnitude() < other->texture->GetWidth() / 2)
 		{
-			overlapVector.y = diffY;
+			colliding = true;
+		}
+	}
+	else if (shape == Shape::CIRCLE && other->GetShape() == Shape::SQUARE)
+	{
+		if (bLeft > GetPosition().x)
+		{
+			difference.x = bLeft;
+		}
+		else if (bRight < GetPosition().x)
+		{
+			difference.x = bRight;
 		}
 		else
 		{
-			overlapVector.x = diffX;
+			difference.x = GetPosition().x;
+		}
+
+		if (bTop > GetPosition().y)
+		{
+			difference.y = bTop;
+		}
+		else if (bBottom < GetPosition().y)
+		{
+			difference.y = bBottom;
+		}
+		else
+		{
+			difference.y = GetPosition().y;
+		}
+
+		if (difference.GetMagnitude() < texture->GetWidth() / 2)
+		{
+			colliding = true;
+		}
+	}
+	else if (shape == Shape::CIRCLE && other->GetShape() == Shape::CIRCLE)
+	{
+		float totalRadii = (texture->GetWidth() / 2) + (other->texture->GetWidth() / 2);
+
+
+		if (difference.GetMagnitude() < totalRadii)
+		{
+			colliding = true;
 		}
 	}
 
-	return colliding;
-}
+	if (GetPosition().x >= other->GetPosition().x)
+	{
+		diffX = bRight - aLeft + 1.0f;
+	}
+	else
+	{
+		diffX = -(aRight - bLeft) - 1.0f;
+	}
 
-CollisionMask Entity::GetMask()
-{
-	return mask;
+	if (GetPosition().y >= other->GetPosition().y)
+	{
+		diffY = bBottom - aTop + 1.0f;
+	}
+	else
+	{
+		diffY = -(aBottom - bTop) - 1.0f;
+	}
+
+	if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
+	{
+		overlapVector.y = diffY;
+	}
+	else
+	{
+		overlapVector.x = diffX;
+	}
+
+	return colliding;
 }
 
 void Entity::Render()

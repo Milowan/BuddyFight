@@ -24,6 +24,7 @@ protected:
 	Texture* texture;
 	float movSpeed;
 	CollisionMask mask;
+	Shape shape;
 	Vector2 overlapVector;
 	Vector2 forwardVector;
 	bool queued;
@@ -51,6 +52,7 @@ public:
 
 	Texture* GetTexture();
 	CollisionMask GetMask();
+	Shape GetShape();
 
 	void SetForwardVector(Vector2 fVector);
 	void Translate(Vector2 dest, Space space = LOCAL);
