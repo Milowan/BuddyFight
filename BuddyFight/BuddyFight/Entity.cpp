@@ -12,12 +12,14 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	active(true),
 	movSpeed(0.0f),
 	maxSpeed(0.0f),
-	mask(CollisionMask::NONE),
-	shape(Shape::NONE),
+	mask(NONE),
+	shape(SHAPELESS),
 	overlapVector(V2ZERO),
 	forwardVector(V2UP),
 	acceleration(V2ZERO),
-	parent(NULL)
+	parent(NULL),
+	queued(false),
+	grounded(false)
 {}
 
 Entity::~Entity()

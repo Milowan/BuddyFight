@@ -30,6 +30,7 @@ protected:
 	Vector2 forwardVector;
 	Vector2 acceleration;
 	bool queued;
+	bool grounded;
 
 public:
 

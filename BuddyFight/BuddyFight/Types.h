@@ -34,7 +34,7 @@ enum CollisionMask
 
 enum Shape
 {
-	NONE,
+	SHAPELESS,
 	CIRCLE,
 	SQUARE
 };
