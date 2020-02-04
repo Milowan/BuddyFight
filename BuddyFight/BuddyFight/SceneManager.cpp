@@ -43,3 +43,11 @@ void SceneManager::ChangeScene(Scene* scene)
 	pool->EmptyPool();
 	scene->InitializeScene();
 }
+
+void SceneManager::RenderScene()
+{
+	if (currentScene != NULL)
+	{
+		currentScene->Render();
+	}
+}

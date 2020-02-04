@@ -25,5 +25,6 @@ public:
 
 	void AddScene(Scene* scene);
 	void ChangeScene(Scene* scene);
+	void RenderScene();
 };
 

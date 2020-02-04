@@ -94,6 +94,8 @@ void GameManager::Render()
 {
 	graphics->ClearBackBuffer();
 
+	sceneManager->RenderScene();
+
 	pool->Render();
 
 	graphics->Render();

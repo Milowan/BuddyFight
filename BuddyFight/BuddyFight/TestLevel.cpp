@@ -2,7 +2,7 @@
 
 
 TestLevel::TestLevel() :
-	Scene()
+	Scene(NULL)
 {
 	mTimer = Timer::GetInstance();
 	mInputManager = InputManager::GetInstance();

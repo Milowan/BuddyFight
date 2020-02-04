@@ -23,10 +23,12 @@ protected:
 
 	Texture* texture;
 	float movSpeed;
+	float maxSpeed;
 	CollisionMask mask;
 	Shape shape;
 	Vector2 overlapVector;
 	Vector2 forwardVector;
+	Vector2 acceleration;
 	bool queued;
 
 public:
@@ -55,6 +57,8 @@ public:
 	Shape GetShape();
 
 	void SetForwardVector(Vector2 fVector);
+	void AddForce(Vector2 force);
+	void Accelerate();
 	void Translate(Vector2 dest, Space space = LOCAL);
 	void Rotate(float angle);
 

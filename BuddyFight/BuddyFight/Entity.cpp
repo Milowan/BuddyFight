@@ -10,10 +10,13 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	rotation(0.0f),
 	scale(V2ONE),
 	active(true),
+	movSpeed(0.0f),
+	maxSpeed(0.0f),
 	mask(CollisionMask::NONE),
 	shape(Shape::NONE),
 	overlapVector(V2ZERO),
 	forwardVector(V2UP),
+	acceleration(V2ZERO),
 	parent(NULL)
 {}
 
@@ -143,6 +146,20 @@ Shape Entity::GetShape()
 void Entity::SetForwardVector(Vector2 fVector)
 {
 	forwardVector = fVector;
+}
+
+void Entity::AddForce(Vector2 force)
+{
+	acceleration += force;
+}
+
+void Entity::Accelerate()
+{
+	movSpeed = acceleration.GetMagnitude();
+	if (movSpeed > maxSpeed)
+	{
+		movSpeed = maxSpeed;
+	}
 }
 
 void Entity::Translate(Vector2 dest, Space space)
