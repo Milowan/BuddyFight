@@ -2,7 +2,7 @@
 
 
 TestLevel::TestLevel() :
-	Scene(NULL)
+	Scene(new Texture("Background.png"))
 {
 	mTimer = Timer::GetInstance();
 	mInputManager = InputManager::GetInstance();
