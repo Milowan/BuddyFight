@@ -28,7 +28,7 @@ bool Graphics::Init()
 	}
 
 	window = SDL_CreateWindow(
-		"Track Attack",
+		"BuddyFight",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		SCREEN_WIDTH,
