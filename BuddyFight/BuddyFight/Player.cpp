@@ -35,6 +35,9 @@ void Player::PickUp()
 Player::Player() :
 	PhysicsEntity(new Texture("Texture"), 0.0, 0.0)
 {
+	lFist = new Fist(new Texture("Texture"), 0.0, 0.0);
+	rFist = new Fist(new Texture("Texture"), 0.0, 0.0);
+
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
 
@@ -57,11 +60,11 @@ Player::~Player()
 	//delete body;
 	//body = nullptr;
 
-	//delete lFist;
-	//lFist = nullptr;
+	delete lFist;
+	lFist = nullptr;
 
-	//delete rFist;
-	//rFist = nullptr;
+	delete rFist;
+	rFist = nullptr;
 }
 
 int Player::GetHealth()

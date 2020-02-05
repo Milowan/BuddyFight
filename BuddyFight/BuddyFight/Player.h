@@ -1,6 +1,7 @@
 #include "PhysicsEntity.h"
 #include "AudioManager.h"
 #include "InputManager.h"
+#include "Fist.h"
 
 class Player : public PhysicsEntity {
 
@@ -15,8 +16,8 @@ private:
 
 	//Head* head;
 	//Body* body;
-	//Fist* lFist;
-	//Fist* rFist;
+	Fist* lFist;
+	Fist* rFist;
 
 	//Weapon* weapon
 
