@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "Types.h"
 #include "MathHelper.h"
 #include "Texture.h"
@@ -18,6 +19,7 @@ private:
 	bool active;
 
 	Entity* parent;
+	vector<Entity*> children;
 
 protected:
 
@@ -51,6 +53,8 @@ public:
 
 	void SetParent(Entity* nParent);
 	Entity* GetParent();
+	void AddChild(Entity* entity);
+	vector<Entity*> GetChildren();
 
 	Texture* GetTexture();
 	CollisionMask GetMask();

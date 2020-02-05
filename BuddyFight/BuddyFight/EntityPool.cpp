@@ -33,35 +33,25 @@ void EntityPool::EmptyPool()
 
 void EntityPool::Update()
 {
-	for (vector<Entity*>::iterator iterator = pool.begin(); iterator != pool.end(); ++iterator)
+	for (int i = 0; i < pool.size(); ++i)
 	{
-		//workaround for stupid error, spoke to steve about it
-		Entity* entity = *iterator;
-		if (entity->GetActive())
+		if (pool[i]->GetActive())
 		{
-			for (vector<Entity*>::iterator iter = pool.begin(); iter != pool.end(); ++iter)
+			for (int j = 0; j < pool.size(); ++j)
 			{
-				Entity* other = *iter;
-				if (other != entity)
+				if (pool[i] != pool[j])
 				{
-					if (entity->GetTexture() != NULL && other->GetTexture() != NULL)
+					if (pool[i]->GetTexture() != NULL && pool[j]->GetTexture() != NULL)
 					{
-						if (entity->CheckCollision(other))
-							entity->HandleCollision(other);
+						if (pool[i]->CheckCollision(pool[j]))
+							pool[i]->HandleCollision(pool[j]);
 					}
 				}
-				if (reset)
-					break;
 			}
-			if (reset)
+			pool[i]->Update();
+			if (pool[i]->IsQueued())
 			{
-				reset = false;
-				break;
-			}
-			entity->Update();
-			if (entity->IsQueued())
-			{
-				cleanupPool.push_back(entity);
+				cleanupPool.push_back(pool[i]);
 			}
 		}
 	}

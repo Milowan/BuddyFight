@@ -129,6 +129,16 @@ Entity* Entity::GetParent()
 	return parent;
 }
 
+void Entity::AddChild(Entity* entity)
+{
+	children.push_back(entity);
+}
+
+vector<Entity*> Entity::GetChildren()
+{
+	return children;
+}
+
 Texture* Entity::GetTexture()
 {
 	return texture;
@@ -301,6 +311,20 @@ bool Entity::CheckCollision(Entity* other)
 	else
 	{
 		overlapVector.x = diffX;
+	}
+
+	for (vector<Entity*>::iterator iterator = children.begin(); iterator != children.end(); ++iterator)
+	{
+		Entity* entity = *iterator;
+		if (entity->CheckCollision(other))
+			entity->HandleCollision(other);
+
+		for (vector<Entity*>::iterator iter = other->GetChildren().begin(); iter != other->GetChildren().end(); ++iter)
+		{
+			Entity* oEntity = *iter;
+			if (entity->CheckCollision(oEntity))
+				entity->HandleCollision(oEntity);
+		}
 	}
 
 	return colliding;
