@@ -7,10 +7,12 @@
 class SpringBoardPlatform : public Platform
 {
 	private:
-		Entity* mEntity1;
+
+		Entity* mSpringBoardBase;
+
 	protected:
 
-		void Spring();
+		//void Spring();
 
 	public:
 
