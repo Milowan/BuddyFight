@@ -17,18 +17,18 @@ void Player::Attack()
 
 void Player::Duck()
 {
-	//forward vector Y = +1
+	SetForwardVector(Vector2(0, 1));
 }
 
 void Player::PickUp()
 {
 	if (!hasWeapon)
 	{
-		//put weapon into one of the hands
+		//Weapon.position = rFist.position but with a slight offset
 	}
 	if (hasWeapon)
 	{
-		//nothing happens, dont pick up the weapon on ground
+		return;
 	}
 }
 
@@ -59,6 +59,9 @@ Player::~Player()
 
 	//delete body;
 	//body = nullptr;
+
+	//delete weapon;
+	//weapon = nullptr;
 
 	delete lFist;
 	lFist = nullptr;
@@ -94,5 +97,24 @@ void Player::TakeDamage(int value)
 
 void Player::Update()
 {
-	//check for movement
+	if (input->KeyPressed(SDL_SCANCODE_W))
+	{
+		SetForwardVector(Vector2(0, -1));
+	}
+	if (input->KeyPressed(SDL_SCANCODE_S))
+	{
+		Duck();
+	}
+	if (input->KeyPressed(SDL_SCANCODE_A))
+	{
+		SetForwardVector(Vector2(-1, 0));
+	}
+	if (input->KeyPressed(SDL_SCANCODE_D))
+	{
+		SetForwardVector(Vector2(1, 0));
+	}
+	if (input->KeyPressed(SDL_SCANCODE_E))
+	{
+		Attack();
+	}
 }

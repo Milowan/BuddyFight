@@ -2,6 +2,9 @@
 #include "AudioManager.h"
 #include "InputManager.h"
 #include "Fist.h"
+//include other body parts and weapon as they come in
+
+
 
 class Player : public PhysicsEntity {
 
