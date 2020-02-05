@@ -9,6 +9,7 @@ Fist::Fist(Texture* texture, float x, float y) :
 {
 	mask = FIST;
 	shape = CIRCLE;
+	grounded = true;
 }
 
 void Fist::SetPunching(bool isPunching)
