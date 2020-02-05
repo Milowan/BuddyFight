@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{3be56fb6-01e0-45a4-b3a5-641493b871da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\Bodies">
+      <UniqueIdentifier>{e44057a5-a5e0-401c-a1b4-3b9d681137b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Bodies">
+      <UniqueIdentifier>{7088c620-e834-44ba-926d-a111ae474b1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsEntity.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Fist.cpp">
+      <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="PhysicsEntity.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Fist.h">
+      <Filter>Header Files\Entities\Bodies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
