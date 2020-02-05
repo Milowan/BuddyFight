@@ -50,7 +50,7 @@ void GameManager::Initialize()
 	inputManager = InputManager::GetInstance();
 	sceneManager = SceneManager::GetInstance();
 	timer = Timer::GetInstance();
-
+	sceneManager->ChangeScene(new TestLevel());
 }
 
 void GameManager::Run()
