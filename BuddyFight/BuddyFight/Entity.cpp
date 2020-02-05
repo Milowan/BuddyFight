@@ -150,20 +150,6 @@ void Entity::SetForwardVector(Vector2 fVector)
 	forwardVector = fVector;
 }
 
-void Entity::AddForce(Vector2 force)
-{
-	acceleration += force;
-}
-
-void Entity::Accelerate()
-{
-	movSpeed = acceleration.GetMagnitude();
-	if (movSpeed > maxSpeed)
-	{
-		movSpeed = maxSpeed;
-	}
-}
-
 void Entity::Translate(Vector2 dest, Space space)
 {
 	if (space == WORLD)
