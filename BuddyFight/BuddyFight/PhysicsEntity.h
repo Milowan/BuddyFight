@@ -15,7 +15,6 @@ class PhysicsEntity :
 protected:
 
 	Vector2 acceleration;
-	bool grounded;
 
 public:
 

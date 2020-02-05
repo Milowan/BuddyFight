@@ -29,7 +29,13 @@ enum AnimDir
 
 enum CollisionMask
 {
-	NONE
+	NONE,
+	WORLD,
+	BODY,
+	HEAD,
+	FIST,
+	WEAPON,
+	BULLET
 };
 
 enum Shape
