@@ -12,6 +12,6 @@ void Scene::Render()
 {
 	if (background != NULL)
 	{
-		background->Render(V2ZERO, V2ONE);
+		background->Render(Vector2(Graphics::SCREEN_WIDTH / 2, Graphics::SCREEN_HEIGHT / 2), V2ONE);
 	}
 }

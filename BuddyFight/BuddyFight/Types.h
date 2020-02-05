@@ -30,7 +30,7 @@ enum AnimDir
 enum CollisionMask
 {
 	NONE,
-	WORLD,
+	GROUND,
 	BODY,
 	HEAD,
 	FIST,

@@ -29,12 +29,14 @@ private:
 	void Duck();
 	void PickUp();
 
+protected:
+
+	bool isJumping;
+	bool hasWeapon;
+
 public:
 	Player();
 	~Player();
-
-	static bool isJumping;
-	static bool hasWeapon;
 
 	int GetHealth();
 	void SetHealth(int value);

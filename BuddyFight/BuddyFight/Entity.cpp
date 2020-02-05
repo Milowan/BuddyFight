@@ -290,7 +290,8 @@ bool Entity::CheckCollision(Entity* other)
 	else
 	{
 		diffY = -(aBottom - bTop) - 1.0f;
-		grounded = true;
+		if (other->GetMask() == GROUND)
+			grounded = true;
 	}
 
 	if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
