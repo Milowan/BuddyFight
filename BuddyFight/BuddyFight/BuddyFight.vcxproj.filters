@@ -99,6 +99,15 @@
     <ClCompile Include="Fist.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
+    <ClCompile Include="SpringBoardPlatform.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelPlatforms.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -151,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="Fist.h">
       <Filter>Header Files\Entities\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="SpringBoardPlatform.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelPlatforms.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
