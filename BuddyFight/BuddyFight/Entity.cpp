@@ -16,7 +16,6 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	shape(SHAPELESS),
 	overlapVector(V2ZERO),
 	forwardVector(V2UP),
-	acceleration(V2ZERO),
 	parent(NULL),
 	queued(false),
 	grounded(false)
@@ -291,6 +290,7 @@ bool Entity::CheckCollision(Entity* other)
 	else
 	{
 		diffY = -(aBottom - bTop) - 1.0f;
+		grounded = true;
 	}
 
 	if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))

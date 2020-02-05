@@ -5,8 +5,7 @@
 
 
 PhysicsEntity::PhysicsEntity(Texture* texture, float x, float y) :
-	Entity(texture, x, y),
-	grounded(false)
+	Entity(texture, x, y)
 {}
 
 void PhysicsEntity::AddForce(Vector2 force)
