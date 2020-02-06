@@ -1,6 +1,11 @@
 #pragma once
-#include "Entity.h"
-class Ice : public Entity
+#include "Platform.h"
+
+
+
+
+
+class Ice : public Platform
 {
 	private:
 

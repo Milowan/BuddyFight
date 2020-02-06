@@ -3,7 +3,7 @@
 
 
 Ice::Ice(float x, float y) :
-	Entity(new Texture("TestLevelSpriteSheet.png", 128, 64, 64, 64), x, y)
+	Platform(new Texture("TestLevelSpriteSheet.png", 128, 64, 64, 64), x, y)
 {}
 
 //void Ice::Slip()

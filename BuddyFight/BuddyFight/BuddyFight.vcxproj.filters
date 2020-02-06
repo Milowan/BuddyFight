@@ -185,9 +185,6 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Crate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChainPlatform.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -198,6 +195,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Ice.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Crate.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
