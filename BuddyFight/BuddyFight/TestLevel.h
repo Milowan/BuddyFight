@@ -21,6 +21,8 @@ class TestLevel : public Scene
 	protected:
 
 	public:
+
+		void InitializeScene() override;
 		void TestLevelAudio();
 		void UpdateScene() override;
 

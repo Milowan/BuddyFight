@@ -3,24 +3,25 @@
 
 TestLevel::TestLevel() :
 	Scene(new Texture("Background.png"))
+{}
+
+
+
+void TestLevel::InitializeScene()
 {
 	mTimer = Timer::GetInstance();
 	mInputManager = InputManager::GetInstance();
 	mAudioManager = AudioManager::GetInstance();
 	EntityPool* pool = EntityPool::GetInstance();
-	player1 = new Player(new Texture("PlayerSpriteSheet.png", 10, 10, 200, 200), 10, 10);
-	player1->SetPosition(10 * Graphics::BLOCK_WIDTH, 10 * Graphics::BLOCK_HEIGHT);
+	player1 = new Player(new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256), 10 * Graphics::BLOCK_WIDTH, 10 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(player1);
 }
 
 void TestLevel::TestLevelAudio()
-{
-}
+{}
 
 void TestLevel::UpdateScene()
-{
-	//player1->Update();
-}
+{}
 
 TestLevel::~TestLevel()
 {

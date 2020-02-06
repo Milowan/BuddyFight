@@ -9,6 +9,11 @@ ChainPlatform::ChainPlatform(float x, float y) :
 	mChainLink1 = new Platform(new Texture("TestLevelSpriteSheet.png", 0, 64, 64, 64), x , y + 64);
 	mChainLink2 = new Platform(new Texture("TestLevelSpriteSheet.png", 0, 64, 64, 64), x, y + 128);
 	mChainPlatformBase = new Platform(new Texture("TestLevelSpriteSheet.png", 0, 0, 64, 64), x, y + 192);
+
+	mChainLink1->SetParent(this);
+	mChainLink2->SetParent(this);
+	mChainPlatformBase->SetParent(this);
+
 }
 
 //void ChainPlatform::Swing()

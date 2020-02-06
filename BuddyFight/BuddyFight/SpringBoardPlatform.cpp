@@ -6,6 +6,8 @@ SpringBoardPlatform::SpringBoardPlatform(float x, float y) :
 	Platform(new Texture("TestLevelSpriteSheet.png", 64, 0, 64, 64), x, y)
 {
 	mSpringBoardBase = new Platform(new Texture("TestLevelSpriteSheet.png", 128, 0, 48, 128), x + 64, y);
+
+	mSpringBoardBase->SetParent(this);
 }
 
 //void SpringBoardPlatform::Spring()
