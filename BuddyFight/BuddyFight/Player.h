@@ -5,7 +5,6 @@
 #include "Fist.h"
 #include "Body.h"
 #include "Head.h"
-//include other body parts and weapon as they come in
 
 
 
@@ -13,13 +12,14 @@ class Player :
 	public PhysicsEntity {
 
 private:
-	const int MAX_HEALTH = 100;
-	const int MAX_STRENGTH = 10;
+	static const int MAX_HEALTH = 100;
+	static const int MAX_STRENGTH = 10;
 	int currentHealth;
 	int strength;
 
 	InputManager* input;
 	AudioManager* audio;
+	EntityPool* pool;
 
 	Head* head;
 	Body* body;
@@ -31,6 +31,8 @@ private:
 	void Attack();
 	void Duck();
 	void PickUp();
+
+	void GetInput();
 
 protected:
 

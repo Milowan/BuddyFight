@@ -42,24 +42,28 @@ Player::Player(Texture* texture, float xOffset, float yOffset) :
 {
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
-	EntityPool* pool = EntityPool::GetInstance();
+	pool = EntityPool::GetInstance();
 
-	currentHealth = MAX_HEALTH;
-	strength = MAX_STRENGTH;
+	SetHealth(MAX_HEALTH);
+	SetStrength(MAX_STRENGTH);
 
 	hasWeapon = false;
 	isJumping = false;
 
 	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
+	//body->SetParent(this);
 	pool->AddEntity(body);
 
 	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
+	//head->SetParent(this);
 	pool->AddEntity(head);
 
-	lFist = new Fist(texture, body->GetPosition().x * -0.024f, body->GetPosition().y * -0.3f);
+	lFist = new Fist(texture, body->GetPosition().x * -0.014f, body->GetPosition().y * -0.1f);
+	//lFist->SetParent(this);
 	pool->AddEntity(lFist);
 
-	rFist = new Fist(texture, body->GetPosition().x * 0.024f, body->GetPosition().y * -0.3f);
+	rFist = new Fist(texture, body->GetPosition().x * 0.014f, body->GetPosition().y * -0.1f);
+	//rFist->SetParent(this);
 	pool->AddEntity(rFist);
 }
 
@@ -68,6 +72,8 @@ Player::~Player()
 	input = nullptr;
 
 	audio = nullptr;
+
+	pool = nullptr;
 
 	delete head;
 	head = nullptr;
@@ -110,7 +116,7 @@ void Player::TakeDamage(int value)
 	currentHealth -= value;
 }
 
-void Player::Update()
+void Player::GetInput()
 {
 	if (input->KeyPressed(SDL_SCANCODE_W))
 	{
@@ -133,5 +139,9 @@ void Player::Update()
 	{
 		Attack();
 	}
+}
 
+void Player::Update()
+{
+	GetInput();
 }
