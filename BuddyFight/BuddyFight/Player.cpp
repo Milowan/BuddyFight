@@ -34,18 +34,19 @@ void Player::PickUp()
 	}
 }
 
-Player::Player() :
-	PhysicsEntity(new Texture("Texture"), 0.0, 0.0)
+Player::Player(Texture* texture, float xOffset, float yOffset) :
+	PhysicsEntity(texture, xOffset, yOffset)
 {
-	head = new Head(new Texture("Texture"), 0, 0);
-
-	body = new Body(new Texture("Texture"), 0, 0);
-
-	lFist = new Fist(new Texture("Texture"), 0.0, 0.0);
-	rFist = new Fist(new Texture("Texture"), 0.0, 0.0);
-
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
+
+	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
+
+	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
+
+	lFist = new Fist(texture, body->GetPosition().x * -0.024f, body->GetPosition().y * -0.3f);
+
+	rFist = new Fist(texture, body->GetPosition().x * 0.024f, body->GetPosition().y * -0.3f);
 
 	currentHealth = MAX_HEALTH;
 	strength = MAX_STRENGTH;
@@ -123,4 +124,5 @@ void Player::Update()
 	{
 		Attack();
 	}
+
 }

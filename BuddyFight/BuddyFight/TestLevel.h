@@ -5,6 +5,9 @@
 #include "Scene.h"
 #include "Timer.h"
 #include "SceneManager.h"
+#include "Player.h"
+
+
 
 class TestLevel : public Scene
 {
@@ -13,7 +16,8 @@ class TestLevel : public Scene
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		SceneManager* mSceneManager;
-
+		Player* player1;
+		//Player* player2;
 	protected:
 
 	public:

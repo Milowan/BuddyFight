@@ -37,7 +37,7 @@ protected:
 	bool hasWeapon;
 
 public:
-	Player();
+	Player(Texture* texture, float xOffset, float yOffset);
 	~Player();
 
 	int GetHealth();
