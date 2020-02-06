@@ -320,17 +320,15 @@ bool Entity::CheckCollision(Entity* other)
 		overlapVector.x = diffX;
 	}
 
-	for (vector<Entity*>::iterator iterator = children.begin(); iterator != children.end(); ++iterator)
+	for (int i = 0; i < children.size(); ++i)
 	{
-		Entity* entity = *iterator;
-		if (entity->CheckCollision(other))
-			entity->HandleCollision(other);
+		if (children[i]->CheckCollision(other))
+			children[i]->HandleCollision(other);
 
-		for (vector<Entity*>::iterator iter = other->GetChildren().begin(); iter != other->GetChildren().end(); ++iter)
+		for (int j = 0; j < other->GetChildren().size(); ++j)
 		{
-			Entity* oEntity = *iter;
-			if (entity->CheckCollision(oEntity))
-				entity->HandleCollision(oEntity);
+			if (children[i]->CheckCollision(other->GetChildren()[j]))
+				children[i]->HandleCollision(other->GetChildren()[j]);
 		}
 	}
 

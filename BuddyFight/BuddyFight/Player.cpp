@@ -51,20 +51,16 @@ Player::Player(Texture* texture, float xOffset, float yOffset) :
 	isJumping = false;
 
 	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
-	//body->SetParent(this);
-	pool->AddEntity(body);
+	body->SetParent(this);
 
 	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
-	//head->SetParent(this);
-	pool->AddEntity(head);
+	head->SetParent(this);
 
 	lFist = new Fist(texture, body->GetPosition().x * -0.014f, body->GetPosition().y * -0.1f);
-	//lFist->SetParent(this);
-	pool->AddEntity(lFist);
+	lFist->SetParent(this);
 
 	rFist = new Fist(texture, body->GetPosition().x * 0.014f, body->GetPosition().y * -0.1f);
-	//rFist->SetParent(this);
-	pool->AddEntity(rFist);
+	rFist->SetParent(this);
 }
 
 Player::~Player()
