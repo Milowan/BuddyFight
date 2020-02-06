@@ -19,7 +19,7 @@ void TestLevel::TestLevelAudio()
 
 void TestLevel::UpdateScene()
 {
-	player1->Update();
+	//player1->Update();
 }
 
 TestLevel::~TestLevel()
