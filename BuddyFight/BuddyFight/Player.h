@@ -40,7 +40,7 @@ protected:
 	bool hasWeapon;
 
 public:
-	Player(Texture* texture, float xOffset, float yOffset);
+	Player(Texture* texture);
 	~Player();
 
 	int GetHealth();

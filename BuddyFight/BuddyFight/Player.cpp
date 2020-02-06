@@ -37,7 +37,7 @@ void Player::PickUp()
 	}
 }
 
-Player::Player(Texture* texture, float xOffset, float yOffset) :
+Player::Player(Texture* texture) :
 	PhysicsEntity(texture)
 {
 	audio = AudioManager::GetInstance();
@@ -50,16 +50,17 @@ Player::Player(Texture* texture, float xOffset, float yOffset) :
 	hasWeapon = false;
 	isJumping = false;
 
-	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
+	body = new Body(texture);
 	body->SetParent(this);
 
-	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
+	head = new Head(texture);
+	head->SetPosition(Vector2(body->GetPosition().x, body->GetPosition().y * -0.4f));
 	head->SetParent(this);
 
-	lFist = new Fist(texture, body->GetPosition().x * -0.014f, body->GetPosition().y * -0.1f);
+	lFist = new Fist(texture, body->GetPosition().x * -0.2f, body->GetPosition().y * -0.3f);
 	lFist->SetParent(this);
 
-	rFist = new Fist(texture, body->GetPosition().x * 0.014f, body->GetPosition().y * -0.1f);
+	rFist = new Fist(texture, body->GetPosition().x * 0.2f, body->GetPosition().y * -0.3f);
 	rFist->SetParent(this);
 }
 
