@@ -20,6 +20,10 @@ public:
 
 	static const short SCREEN_WIDTH = 1152;
 	static const short SCREEN_HEIGHT = 576;
+	static const short NUM_BLOCKS_HIGH = 20;
+	static const short NUM_BLOCKS_WIDE = 40;
+	static const short BLOCK_WIDTH = SCREEN_WIDTH / NUM_BLOCKS_WIDE;
+	static const short BLOCK_HEIGHT = SCREEN_HEIGHT / NUM_BLOCKS_HIGH;
 
 private:
 
