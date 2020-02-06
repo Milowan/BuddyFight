@@ -1,6 +1,7 @@
 #include "PhysicsEntity.h"
 #include "AudioManager.h"
 #include "InputManager.h"
+#include "EntityPool.h"
 #include "Fist.h"
 #include "Body.h"
 #include "Head.h"

@@ -6,12 +6,14 @@ void Player::Attack()
 	{
 		//check if weapon pointer is null
 			//if its not nullptr, run an attack that weapon would perform
+		//attack sfx
 	}
 	if (!hasWeapon)
 	{
 		//check if forward vector is positiive or negative (right or left)
 		//that way we know which fist to use
 		//proper fist position moves in the direction of forward vector
+		//attack sfx
 	}
 }
 
@@ -27,6 +29,7 @@ void Player::PickUp()
 		//get a pointer to the weapon on the ground in memory
 		//check if its position is close to the players
 		//groundWeapon.position = rFist.position but with a slight offset
+		//run pick up sfx
 	}
 	if (hasWeapon)
 	{
@@ -35,24 +38,29 @@ void Player::PickUp()
 }
 
 Player::Player(Texture* texture, float xOffset, float yOffset) :
-	PhysicsEntity(texture, xOffset, yOffset)
+	PhysicsEntity(texture)
 {
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
-
-	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
-
-	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
-
-	lFist = new Fist(texture, body->GetPosition().x * -0.024f, body->GetPosition().y * -0.3f);
-
-	rFist = new Fist(texture, body->GetPosition().x * 0.024f, body->GetPosition().y * -0.3f);
+	EntityPool* pool = EntityPool::GetInstance();
 
 	currentHealth = MAX_HEALTH;
 	strength = MAX_STRENGTH;
-	
+
 	hasWeapon = false;
 	isJumping = false;
+
+	body = new Body(texture, xOffset * Graphics::BLOCK_WIDTH, yOffset * Graphics::BLOCK_HEIGHT);
+	pool->AddEntity(body);
+
+	head = new Head(texture, body->GetPosition().x, body->GetPosition().y * -0.4f);
+	pool->AddEntity(head);
+
+	lFist = new Fist(texture, body->GetPosition().x * -0.024f, body->GetPosition().y * -0.3f);
+	pool->AddEntity(lFist);
+
+	rFist = new Fist(texture, body->GetPosition().x * 0.024f, body->GetPosition().y * -0.3f);
+	pool->AddEntity(rFist);
 }
 
 Player::~Player()
@@ -107,6 +115,7 @@ void Player::Update()
 	if (input->KeyPressed(SDL_SCANCODE_W))
 	{
 		SetForwardVector(Vector2(0, -1));
+		printf("moved up!");
 	}
 	if (input->KeyPressed(SDL_SCANCODE_S))
 	{
