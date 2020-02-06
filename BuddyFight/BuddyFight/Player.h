@@ -24,7 +24,6 @@ private:
 
 	//Weapon* weapon
 
-
 	void Attack();
 	void Duck();
 	void PickUp();

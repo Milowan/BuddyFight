@@ -24,7 +24,9 @@ void Player::PickUp()
 {
 	if (!hasWeapon)
 	{
-		//Weapon.position = rFist.position but with a slight offset
+		//get a pointer to the weapon on the ground in memory
+		//check if its position is close to the players
+		//groundWeapon.position = rFist.position but with a slight offset
 	}
 	if (hasWeapon)
 	{
@@ -37,6 +39,8 @@ Player::Player() :
 {
 	lFist = new Fist(new Texture("Texture"), 0.0, 0.0);
 	rFist = new Fist(new Texture("Texture"), 0.0, 0.0);
+	lFist->SetPosition(Vector2(this->GetPosition().x * -0.024, this->GetPosition().y * -0.3));
+	rFist->SetPosition(Vector2(this->GetPosition().x * 0.024, this->GetPosition().y * -0.3));
 
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
