@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include "SceneManager.h"
 #include "Player.h"
-
+#include "ChainPlatform.h"
 
 
 class TestLevel : public Scene
@@ -16,8 +16,11 @@ class TestLevel : public Scene
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		SceneManager* mSceneManager;
+
 		Player* player1;
 		//Player* player2;
+
+		ChainPlatform* chainPlatform;
 	protected:
 
 	public:
