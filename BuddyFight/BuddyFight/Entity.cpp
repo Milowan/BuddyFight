@@ -121,6 +121,8 @@ void Entity::SetParent(Entity* nParent)
 		scale = Vector2(scale.x / parentScale.x, scale.y / parentScale.y);
 	}
 
+	nParent->AddChild(this);
+
 	parent = nParent;
 }
 
@@ -137,6 +139,14 @@ void Entity::AddChild(Entity* entity)
 vector<Entity*> Entity::GetChildren()
 {
 	return children;
+}
+
+void Entity::UpdateChildren()
+{
+	for (int i = 0; i < children.size(); ++i)
+	{
+		children[i]->Update();
+	}
 }
 
 Texture* Entity::GetTexture()
@@ -179,13 +189,6 @@ bool Entity::IsQueued()
 
 bool Entity::CheckCollision(Entity* other)
 {
-	bool colliding = false;
-
-	float diffX = 0.0f;
-	float diffY = 0.0f;
-
-
-	
 	float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
 	float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
 	float aTop = GetPosition().y - (texture->GetHeight() * GetScale().y / 2);
@@ -194,7 +197,11 @@ bool Entity::CheckCollision(Entity* other)
 	float bRight = other->GetPosition().x + (other->texture->GetWidth() * other->GetScale().x / 2);
 	float bTop = other->GetPosition().y - (other->texture->GetHeight() * other->GetScale().y / 2);
 	float bBottom = other->GetPosition().y + (other->texture->GetHeight() * other->GetScale().y / 2);
+
 	overlapVector = Vector2(0.0f, 0.0f);
+	bool colliding = false;
+	float diffX = 0.0f;
+	float diffY = 0.0f;	
 	Vector2 difference = GetPosition() - other->GetPosition();
 	
 	if (shape == Shape::SQUARE && other->GetShape() == Shape::SQUARE)

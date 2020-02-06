@@ -55,12 +55,11 @@ public:
 	Entity* GetParent();
 	void AddChild(Entity* entity);
 	vector<Entity*> GetChildren();
+	void UpdateChildren();
 
 	Texture* GetTexture();
 	CollisionMask GetMask();
 	Shape GetShape();
-
-	void SetMask(CollisionMask nMask);
 
 	void SetForwardVector(Vector2 fVector);
 	void Translate(Vector2 dest, Space space = LOCAL);
