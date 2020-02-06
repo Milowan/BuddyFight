@@ -37,10 +37,16 @@ void Player::PickUp()
 Player::Player() :
 	PhysicsEntity(new Texture("Texture"), 0.0, 0.0)
 {
+	head = new Head(new Texture("Texture"), 0, 0);
+	head->SetPosition(Vector2(body->GetPosition().x, body->GetPosition().y * -0.4f));
+
+	body = new Body(new Texture("Texture"), 0, 0);
+	body->SetPosition(Vector2(Graphics::SCREEN_WIDTH * -0.3f, Graphics::SCREEN_HEIGHT * 0.5f));
+
 	lFist = new Fist(new Texture("Texture"), 0.0, 0.0);
+	lFist->SetPosition(Vector2(body->GetPosition().x * -0.024f, body->GetPosition().y * -0.3f));
 	rFist = new Fist(new Texture("Texture"), 0.0, 0.0);
-	lFist->SetPosition(Vector2(this->GetPosition().x * -0.024, this->GetPosition().y * -0.3));
-	rFist->SetPosition(Vector2(this->GetPosition().x * 0.024, this->GetPosition().y * -0.3));
+	rFist->SetPosition(Vector2(body->GetPosition().x * 0.024f, body->GetPosition().y * -0.3f));
 
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
@@ -58,11 +64,11 @@ Player::~Player()
 
 	audio = nullptr;
 
-	//delete head;
-	//head = nullptr;
+	delete head;
+	head = nullptr;
 
-	//delete body;
-	//body = nullptr;
+	delete body;
+	body = nullptr;
 
 	//delete weapon;
 	//weapon = nullptr;

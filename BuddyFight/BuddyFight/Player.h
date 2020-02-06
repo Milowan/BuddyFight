@@ -2,11 +2,14 @@
 #include "AudioManager.h"
 #include "InputManager.h"
 #include "Fist.h"
+#include "Body.h"
+#include "Head.h"
 //include other body parts and weapon as they come in
 
 
 
-class Player : public PhysicsEntity {
+class Player :
+	public PhysicsEntity {
 
 private:
 	const int MAX_HEALTH = 100;
@@ -17,8 +20,8 @@ private:
 	InputManager* input;
 	AudioManager* audio;
 
-	//Head* head;
-	//Body* body;
+	Head* head;
+	Body* body;
 	Fist* lFist;
 	Fist* rFist;
 
