@@ -37,7 +37,7 @@ void Player::PickUp()
 	}
 }
 
-Player::Player(Texture* texture) :
+Player::Player() :
 	PhysicsEntity(texture)
 {
 	audio = AudioManager::GetInstance();
@@ -47,23 +47,29 @@ Player::Player(Texture* texture) :
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
 
+	Texture* skin = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+
 	hasWeapon = false;
 	isJumping = false;
+	maxSpeed = 60.0f;
 
-	SetPosition(10 * Graphics::BLOCK_WIDTH, 15 * Graphics::BLOCK_HEIGHT);
-	SetScale(Vector2(0.5f, 0.5f));
+	SetPosition(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
-	body = new Body(texture, this->GetPosition().x, this->GetPosition().y);
+	body = new Body(skin, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
+	body->SetScale(Vector2(0.5f, 0.5f));
 
-	head = new Head(texture, body->GetPosition().x, body->GetPosition().y - 2);
+	head = new Head(skin, this->GetPosition().x + 35, this->GetPosition().y - 85);
 	head->SetParent(this);
+	head->SetScale(Vector2(0.3f, 0.3f));
 
-	lFist = new Fist(texture, body->GetPosition().x * -0.2f, body->GetPosition().y * -0.3f);
+	lFist = new Fist(skin, this->GetPosition().x - 100, this->GetPosition().y - 2);
 	lFist->SetParent(this);
+	lFist->SetScale(Vector2(0.25f, 0.25f));
 
-	rFist = new Fist(texture, body->GetPosition().x * 0.2f, body->GetPosition().y * -0.3f);
+	rFist = new Fist(skin, this->GetPosition().x + 150, this->GetPosition().y - 2);
 	rFist->SetParent(this);
+	rFist->SetScale(Vector2(0.25f, 0.25f));
 }
 
 Player::~Player()
@@ -74,17 +80,17 @@ Player::~Player()
 
 	pool = nullptr;
 
-	delete head;
-	head = nullptr;
+	//delete head;
+	//head = nullptr;
 
-	delete body;
-	body = nullptr;
+	//delete body;
+	//body = nullptr;
 
 	//delete weapon;
 	//weapon = nullptr;
 
-	delete lFist;
-	lFist = nullptr;
+	//delete lFist;
+	//lFist = nullptr;
 
 	delete rFist;
 	rFist = nullptr;
@@ -143,4 +149,6 @@ void Player::GetInput()
 void Player::Update()
 {
 	GetInput();
+
+	UpdatePhysics();
 }
