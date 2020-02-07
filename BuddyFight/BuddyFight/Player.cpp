@@ -50,11 +50,13 @@ Player::Player(Texture* texture) :
 	hasWeapon = false;
 	isJumping = false;
 
-	body = new Body(texture);
+	SetPosition(10 * Graphics::BLOCK_WIDTH, 15 * Graphics::BLOCK_HEIGHT);
+	SetScale(Vector2(0.5f, 0.5f));
+
+	body = new Body(texture, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
 
-	head = new Head(texture);
-	head->SetPosition(Vector2(body->GetPosition().x, body->GetPosition().y * -0.4f));
+	head = new Head(texture, body->GetPosition().x, body->GetPosition().y - 2);
 	head->SetParent(this);
 
 	lFist = new Fist(texture, body->GetPosition().x * -0.2f, body->GetPosition().y * -0.3f);
