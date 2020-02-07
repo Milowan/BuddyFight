@@ -341,7 +341,7 @@ bool Entity::CheckCollision(Entity* other)
 		for (int j = 0; j < other->GetChildren().size(); ++j)
 		{
 			if (children[i]->CheckCollision(other->GetChildren()[j]))
-				children[i]->HandleCollision(other->GetChildren()[j]);
+				colliding = true;
 		}
 	}
 
