@@ -32,6 +32,7 @@ protected:
 	Vector2 forwardVector;
 	bool queued;
 	bool grounded;
+	bool colliding;
 
 public:
 
@@ -63,6 +64,8 @@ public:
 	Texture* GetTexture();
 	CollisionMask GetMask();
 	Shape GetShape();
+	bool GetColliding();
+	Vector2 GetOverlap();
 
 	void SetForwardVector(Vector2 fVector);
 	void Translate(Vector2 dest, Space space = LOCAL);

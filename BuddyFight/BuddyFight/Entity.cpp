@@ -174,6 +174,16 @@ Shape Entity::GetShape()
 	return shape;
 }
 
+bool Entity::GetColliding()
+{
+	return colliding;
+}
+
+Vector2 Entity::GetOverlap()
+{
+	return overlapVector;
+}
+
 void Entity::SetForwardVector(Vector2 fVector)
 {
 	forwardVector = fVector;
@@ -199,7 +209,7 @@ bool Entity::IsQueued()
 
 bool Entity::CheckCollision(Entity* other)
 {
-	bool colliding = false;
+	colliding = false;
 	if (texture != NULL && other->GetTexture() != NULL)
 	{
 		float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
