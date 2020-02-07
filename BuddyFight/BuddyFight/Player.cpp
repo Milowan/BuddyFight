@@ -47,7 +47,10 @@ Player::Player() :
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
 
-	Texture* skin = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* bodyS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* headS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* lFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* rFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
 
 	hasWeapon = false;
 	isJumping = false;
@@ -55,21 +58,25 @@ Player::Player() :
 
 	SetPosition(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
-	body = new Body(skin, this->GetPosition().x, this->GetPosition().y);
+	body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
-	body->SetScale(Vector2(0.5f, 0.5f));
+	body->GetTexture()->SetWidth(120);
+	body->GetTexture()->SetHeight(120);
 
-	head = new Head(skin, this->GetPosition().x + 35, this->GetPosition().y - 85);
+	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 400);
 	head->SetParent(this);
-	head->SetScale(Vector2(0.3f, 0.3f));
+	head->GetTexture()->SetWidth(80);
+	head->GetTexture()->SetHeight(80);
 
-	lFist = new Fist(skin, this->GetPosition().x - 100, this->GetPosition().y - 2);
+	lFist = new Fist(lFistS, body->GetPosition().x - 350, body->GetPosition().y - 200);
 	lFist->SetParent(this);
-	lFist->SetScale(Vector2(0.25f, 0.25f));
+	lFist->GetTexture()->SetWidth(60);
+	lFist->GetTexture()->SetHeight(60);
 
-	rFist = new Fist(skin, this->GetPosition().x + 150, this->GetPosition().y - 2);
+	rFist = new Fist(rFistS, body->GetPosition().x + 350, body->GetPosition().y - 200);
 	rFist->SetParent(this);
-	rFist->SetScale(Vector2(0.25f, 0.25f));
+	rFist->GetTexture()->SetWidth(60);
+	rFist->GetTexture()->SetHeight(60);
 }
 
 Player::~Player()
