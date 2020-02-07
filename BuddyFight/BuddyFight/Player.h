@@ -1,10 +1,11 @@
 #include "PhysicsEntity.h"
 #include "AudioManager.h"
 #include "InputManager.h"
-#include "EntityPool.h"
+#include "MathHelper.h"
 #include "Fist.h"
 #include "Body.h"
 #include "Head.h"
+#include "Platform.h"
 
 
 
@@ -14,6 +15,8 @@ class Player :
 private:
 	static const int MAX_HEALTH = 100;
 	static const int MAX_STRENGTH = 10;
+	static const int MAX_PUNCH_DISTANCE = 50;
+
 	int currentHealth;
 	int strength;
 
@@ -50,6 +53,8 @@ public:
 	void SetStrength(int value);
 
 	void TakeDamage(int value);
+
+	void HandleCollision(Entity* other) override;
 
 	void Update() override;
 

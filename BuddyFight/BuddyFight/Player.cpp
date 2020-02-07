@@ -10,10 +10,10 @@ void Player::Attack()
 	}
 	if (!hasWeapon)
 	{
-		//check if forward vector is positiive or negative (right or left)
-		//that way we know which fist to use
-		//proper fist position moves in the direction of forward vector
-		//attack sfx
+		lFist->SetPunching(true);
+		lFist->SetForwardVector(Vector2(-1, 0));
+		printf("attacked");
+		lFist->SetPunching(false);
 	}
 }
 
@@ -38,7 +38,7 @@ void Player::PickUp()
 }
 
 Player::Player() :
-	PhysicsEntity(texture)
+	PhysicsEntity(NULL)
 {
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
@@ -128,6 +128,14 @@ void Player::TakeDamage(int value)
 	currentHealth -= value;
 }
 
+void Player::HandleCollision(Entity* other)
+{
+	if (this->GetColliding() && other->GetMask() == GROUND)
+	{
+		this->overlapVector += body->GetPosition();
+	}
+}
+
 void Player::GetInput()
 {
 	if (input->KeyPressed(SDL_SCANCODE_W))
@@ -147,7 +155,7 @@ void Player::GetInput()
 	{
 		SetForwardVector(Vector2(1, 0));
 	}
-	if (input->KeyPressed(SDL_SCANCODE_E))
+	if (input->KeyPressed(SDL_SCANCODE_N))
 	{
 		Attack();
 	}
@@ -158,4 +166,6 @@ void Player::Update()
 	GetInput();
 
 	UpdatePhysics();
+
+	UpdateChildren();
 }
