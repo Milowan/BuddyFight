@@ -341,5 +341,10 @@ void Entity::Render()
 	{
 		if (texture != NULL)
 			texture->Render(GetPosition(), GetScale(), GetRotation());
+
+		for (int i = 0; i < children.size(); ++i)
+		{
+			children[i]->Render();
+		}
 	}
 }
