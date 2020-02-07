@@ -46,7 +46,16 @@ void EntityPool::Update()
 						if (pool[i]->CheckCollision(pool[j]))
 							pool[i]->HandleCollision(pool[j]);
 					}
+					if (reset)
+					{
+						break;
+					}
 				}
+			}
+			if (reset)
+			{
+				reset = false;
+				break;
 			}
 			pool[i]->Update();
 			if (pool[i]->IsQueued())
