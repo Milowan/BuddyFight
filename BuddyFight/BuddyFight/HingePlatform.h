@@ -10,7 +10,7 @@ class HingePlatform : public Platform
 
 		float startRot = 0;
 		float endRot = 90;
-		float rotSpeed = 1;
+		float rotSpeed;
 		float currentRot;
 		bool returning = false;
 
@@ -26,7 +26,7 @@ class HingePlatform : public Platform
 
 		virtual void Update() override;
 
-		HingePlatform(float x, float y);
+		HingePlatform(float x, float y, float speed = 0.5f);
 		~HingePlatform();
 
 };

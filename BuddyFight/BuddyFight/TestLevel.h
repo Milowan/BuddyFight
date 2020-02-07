@@ -7,7 +7,7 @@
 #include "SceneManager.h"
 #include "Player.h"
 #include "ChainPlatform.h"
-
+#include "HingePlatform.h"
 
 class TestLevel : public Scene
 {
@@ -23,6 +23,11 @@ class TestLevel : public Scene
 		ChainPlatform* chainPlatform1;
 		ChainPlatform* chainPlatform2;
 		ChainPlatform* chainPlatform3;
+
+		HingePlatform* hingePlatform1;
+		HingePlatform* hingePlatform2;
+		HingePlatform* hingePlatform3;
+
 	protected:
 
 	public:

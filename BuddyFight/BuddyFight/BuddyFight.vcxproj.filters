@@ -120,9 +120,6 @@
     <ClCompile Include="Spikes.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Ice.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Body.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
@@ -198,9 +195,6 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Spikes.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Ice.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Crate.h">
