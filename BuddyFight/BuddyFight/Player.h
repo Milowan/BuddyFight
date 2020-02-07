@@ -40,7 +40,7 @@ protected:
 	bool hasWeapon;
 
 public:
-	Player(Texture* texture);
+	Player();
 	~Player();
 
 	int GetHealth();
