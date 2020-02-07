@@ -41,11 +41,9 @@ void EntityPool::Update()
 			{
 				if (pool[i] != pool[j])
 				{
-					if (pool[i]->GetTexture() != NULL && pool[j]->GetTexture() != NULL)
-					{
-						if (pool[i]->CheckCollision(pool[j]))
-							pool[i]->HandleCollision(pool[j]);
-					}
+					if (pool[i]->CheckCollision(pool[j]))
+						pool[i]->HandleCollision(pool[j]);
+					
 					if (reset)
 					{
 						break;
