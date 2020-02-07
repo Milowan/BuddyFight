@@ -9,8 +9,8 @@ Platform::Platform(Texture* texture, float x, float y) :
 {
 	EntityPool* pool = EntityPool::GetInstance();
 	mask = CollisionMask::GROUND;
+	shape = Shape::SQUARE;
 }
 
 Platform::~Platform()
-{
-}
+{}

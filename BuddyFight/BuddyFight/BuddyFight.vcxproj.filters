@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Entities\Bodies">
       <UniqueIdentifier>{7088c620-e834-44ba-926d-a111ae474b1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Platforms">
+      <UniqueIdentifier>{e514daa5-1171-4994-bfaa-62d68ac6a79c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Platforms">
+      <UniqueIdentifier>{5ad5d4b1-5978-4cc5-909b-40320316b628}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -99,22 +105,7 @@
     <ClCompile Include="Fist.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
-    <ClCompile Include="SpringBoardPlatform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Crate.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="ChainPlatform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="HingePlatform.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Spikes.cpp">
@@ -125,6 +116,21 @@
     </ClCompile>
     <ClCompile Include="Head.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainPlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Crate.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="BasePlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,25 +185,10 @@
     <ClInclude Include="Fist.h">
       <Filter>Header Files\Entities\Bodies</Filter>
     </ClInclude>
-    <ClInclude Include="SpringBoardPlatform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="ChainPlatform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="HingePlatform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Spikes.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Crate.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Body.h">
@@ -205,6 +196,21 @@
     </ClInclude>
     <ClInclude Include="Head.h">
       <Filter>Header Files\Entities\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="ChainPlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Crate.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
