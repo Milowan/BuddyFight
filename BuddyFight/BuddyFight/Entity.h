@@ -62,8 +62,13 @@ public:
 	void UpdateChildren();
 
 	Texture* GetTexture();
+
+	void SetMask(CollisionMask nMask);
 	CollisionMask GetMask();
+
+	void SetShape(Shape nShape);
 	Shape GetShape();
+
 	bool GetColliding();
 	Vector2 GetOverlap();
 

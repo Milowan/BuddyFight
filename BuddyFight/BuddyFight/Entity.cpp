@@ -164,9 +164,19 @@ Texture* Entity::GetTexture()
 	return texture;
 }
 
+void Entity::SetMask(CollisionMask nMask)
+{
+	mask = nMask;
+}
+
 CollisionMask Entity::GetMask()
 {
 	return mask;
+}
+
+void Entity::SetShape(Shape nShape)
+{
+	shape = nShape;
 }
 
 Shape Entity::GetShape()
