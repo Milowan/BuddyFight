@@ -56,27 +56,27 @@ Player::Player() :
 	isJumping = false;
 	maxSpeed = 60.0f;
 
-	SetPosition(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
+	SetPosition(Graphics::BLOCK_WIDTH * 20, Graphics::BLOCK_HEIGHT * 10);
 
 	body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
-	body->GetTexture()->SetWidth(120);
-	body->GetTexture()->SetHeight(120);
+	body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
+	body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
 
-	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 400);
+	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
 	head->SetParent(this);
-	head->GetTexture()->SetWidth(80);
-	head->GetTexture()->SetHeight(80);
+	head->GetTexture()->SetWidth(20);
+	head->GetTexture()->SetHeight(20);
 
-	lFist = new Fist(lFistS, body->GetPosition().x - 350, body->GetPosition().y - 200);
+	lFist = new Fist(lFistS, body->GetPosition().x - 95, body->GetPosition().y - 50);
 	lFist->SetParent(this);
-	lFist->GetTexture()->SetWidth(60);
-	lFist->GetTexture()->SetHeight(60);
+	lFist->GetTexture()->SetWidth(15);
+	lFist->GetTexture()->SetHeight(15);
 
-	rFist = new Fist(rFistS, body->GetPosition().x + 350, body->GetPosition().y - 200);
+	rFist = new Fist(rFistS, body->GetPosition().x + 95, body->GetPosition().y - 50);
 	rFist->SetParent(this);
-	rFist->GetTexture()->SetWidth(60);
-	rFist->GetTexture()->SetHeight(60);
+	rFist->GetTexture()->SetWidth(15);
+	rFist->GetTexture()->SetHeight(15);
 }
 
 Player::~Player()
@@ -87,17 +87,17 @@ Player::~Player()
 
 	pool = nullptr;
 
-	//delete head;
-	//head = nullptr;
+	delete head;
+	head = nullptr;
 
-	//delete body;
-	//body = nullptr;
+	delete body;
+	body = nullptr;
 
 	//delete weapon;
 	//weapon = nullptr;
 
-	//delete lFist;
-	//lFist = nullptr;
+	delete lFist;
+	lFist = nullptr;
 
 	delete rFist;
 	rFist = nullptr;
