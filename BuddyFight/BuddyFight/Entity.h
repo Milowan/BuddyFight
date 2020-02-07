@@ -51,6 +51,9 @@ public:
 	void SetActive(bool isOn);
 	bool GetActive();
 
+	void SetForward(Vector2 forward);
+	Vector2 GetForward();
+
 	void SetParent(Entity* nParent);
 	Entity* GetParent();
 	void AddChild(Entity* entity);

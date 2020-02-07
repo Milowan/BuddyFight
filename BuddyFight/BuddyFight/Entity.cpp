@@ -98,6 +98,16 @@ bool Entity::GetActive()
 	return active;
 }
 
+void Entity::SetForward(Vector2 forward)
+{
+	forwardVector = forward;
+}
+
+Vector2 Entity::GetForward()
+{
+	return forwardVector;
+}
+
 void Entity::SetParent(Entity* nParent)
 {
 	if (nParent == NULL)
