@@ -2,6 +2,8 @@
 
 
 
+
+
 HingePlatform::HingePlatform(float x, float y) :
 	Platform(new Texture("TestLevelSpriteSheet.png", 64, 0, 64, 64), x, y)
 {
@@ -10,10 +12,32 @@ HingePlatform::HingePlatform(float x, float y) :
 	mHingePlatformBase->SetParent(this);
 }
 
-//void HingePlatform::Hinge()
-//{
-//	//Rotate mOriginPos to mEndPos and back again to mOriginPos
-//}
+void HingePlatform::SetRot()
+{
+    SetRotation(currentRot);
+}
+
+void HingePlatform::Animate()
+{
+    if (!returning)
+        if (currentRot <= endRot)
+            currentRot += rotSpeed;
+        else
+            returning = true;
+    else
+        if (currentRot >= startRot)
+            currentRot -= rotSpeed;
+        else
+            returning = false;
+}
+
+void HingePlatform::Update()
+{
+    Animate();
+}
 
 HingePlatform::~HingePlatform()
-{}
+{
+	delete mHingePlatformBase;
+	mHingePlatformBase = nullptr;
+}

@@ -20,7 +20,9 @@ class TestLevel : public Scene
 		Player* player1;
 		//Player* player2;
 
-		ChainPlatform* chainPlatform;
+		ChainPlatform* chainPlatform1;
+		ChainPlatform* chainPlatform2;
+		ChainPlatform* chainPlatform3;
 	protected:
 
 	public:

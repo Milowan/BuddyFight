@@ -3,7 +3,6 @@
 #include "EntityPool.h"
 
 
-
 class Platform : public Entity
 {
 	private:
@@ -13,8 +12,7 @@ class Platform : public Entity
 	public:
 
 
-
-		Platform(Texture* texture, float x, float y);
+		Platform(Texture* texture, float x = 0.0f, float y = 0.0f);
 		~Platform();
 
 

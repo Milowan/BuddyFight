@@ -1,11 +1,11 @@
 #pragma once
-#include "Platform.h"
+#include "Entity.h"
 #include "EntityPool.h"
+#include "Platform.h"
 
 
 
-
-class ChainPlatform : public Platform
+class ChainPlatform : public Entity
 {
 	private:
 		//Vector2* mOriginPos;
@@ -14,7 +14,11 @@ class ChainPlatform : public Platform
 
 		Entity* mChainLink1;
 		Entity* mChainLink2;
-		Entity* mChainPlatformBase;
+		Entity* mChainLink3;
+		Entity* mChainLink4;
+		Entity* mChainLink5;
+		Platform* mChainPlatformBase;
+
 
 	protected:
 
