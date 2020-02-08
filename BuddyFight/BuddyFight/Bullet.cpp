@@ -21,5 +21,8 @@ int Bullet::GetDamage()
 
 void Bullet::Update()
 {
-	SetPosition(GetPosition() + (mForward * mSpeed * mTimer->GetDeltaTime()));
+	if (GetActive())
+	{
+		SetPosition(GetPosition() + (mForward * mSpeed * mTimer->GetDeltaTime()));
+	}
 }
