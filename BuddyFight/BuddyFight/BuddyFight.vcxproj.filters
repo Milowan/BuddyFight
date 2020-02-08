@@ -111,9 +111,6 @@
     <ClCompile Include="Fist.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
-    <ClCompile Include="SpringBoardPlatform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Platform.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
@@ -126,13 +123,7 @@
     <ClCompile Include="ChainPlatform.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="HingePlatform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Spikes.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Ice.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Body.cpp">
@@ -148,6 +139,18 @@
       <Filter>Source Files\Entities\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Source Files\Entities\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="BasePlatform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformEast.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformWest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Entities\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,9 +206,6 @@
     <ClInclude Include="Fist.h">
       <Filter>Header Files\Entities\Bodies</Filter>
     </ClInclude>
-    <ClInclude Include="SpringBoardPlatform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -215,13 +215,7 @@
     <ClInclude Include="ChainPlatform.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="HingePlatform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Spikes.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Ice.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Crate.h">
@@ -240,6 +234,18 @@
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="MeleeWeapon.h">
+      <Filter>Header Files\Entities\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformEast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformWest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
   </ItemGroup>

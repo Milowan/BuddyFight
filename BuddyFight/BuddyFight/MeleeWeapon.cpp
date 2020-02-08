@@ -17,15 +17,15 @@ float MeleeWeapon::GetActiveDuration()
 
 void MeleeWeapon::Fire()
 {
-	if (!activeCollider)
+	if (!mFiring)
 	{
-		activeCollider = true;
+		mFiring = true;
 	}
 }
 
 void MeleeWeapon::Update()
 {
-	if (activeCollider)
+	if (mFiring)
 	{
 		if (mask == CollisionMask::NONE)
 		{
@@ -38,7 +38,7 @@ void MeleeWeapon::Update()
 		{
 			mask = CollisionMask::NONE;
 			currentTime = 0;
-			activeCollider = false;
+			mFiring = false;
 		}
 	}
 }

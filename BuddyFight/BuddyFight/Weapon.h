@@ -19,7 +19,10 @@ public:
 protected:
 
 	Timer* mTimer;
+	float currentTime;
 	WeaponType mWeaponType;
+	int mDamage;
+	bool mFiring;
 	virtual void Fire() = 0;
 	virtual void Drop();
 	bool GetIsCollected();

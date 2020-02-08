@@ -142,6 +142,7 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BasePlatform.cpp" />
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ChainPlatform.cpp" />
     <ClCompile Include="Crate.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -173,6 +174,7 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BasePlatform.h" />
     <ClInclude Include="Body.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="ChainPlatform.h" />
     <ClInclude Include="Crate.h" />
     <ClInclude Include="Entity.h" />

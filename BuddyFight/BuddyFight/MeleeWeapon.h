@@ -8,16 +8,14 @@ public:
 	MeleeWeapon(Texture* texture, float x, float y);
 	~MeleeWeapon();
 
-	float GetActiveDuration();
+	float GetActiveDuration(); // Use this to decide how fast to animate your punches/swings Jay
 
 private:
-	bool activeCollider;
-	float currentTime;
 
 protected:
 	float activeDuration;
-	virtual void Update() override;
-	virtual void Fire() override;
+	virtual void Update() override; // As long as the weapon update runs the hitbox will handle itself and you wont be able to fire when already firing
+	virtual void Fire() override; // The player can call this to activate their current weapon
 
 };
 
