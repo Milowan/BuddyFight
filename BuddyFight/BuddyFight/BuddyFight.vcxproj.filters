@@ -123,13 +123,16 @@
     <ClCompile Include="Crate.cpp">
       <Filter>Source Files\Entities\Platforms</Filter>
     </ClCompile>
-    <ClCompile Include="HingePlatform.cpp">
-      <Filter>Source Files\Entities\Platforms</Filter>
-    </ClCompile>
     <ClCompile Include="Platform.cpp">
       <Filter>Source Files\Entities\Platforms</Filter>
     </ClCompile>
     <ClCompile Include="BasePlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformEast.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformWest.cpp">
       <Filter>Source Files\Entities\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,13 +206,16 @@
     <ClInclude Include="Crate.h">
       <Filter>Header Files\Entities\Platforms</Filter>
     </ClInclude>
-    <ClInclude Include="HingePlatform.h">
-      <Filter>Header Files\Entities\Platforms</Filter>
-    </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Header Files\Entities\Platforms</Filter>
     </ClInclude>
     <ClInclude Include="BasePlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformEast.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformWest.h">
       <Filter>Header Files\Entities\Platforms</Filter>
     </ClInclude>
   </ItemGroup>

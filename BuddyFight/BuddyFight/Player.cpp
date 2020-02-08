@@ -39,9 +39,21 @@ void Player::PickUp()
 
 void Player::Jump()
 {
-	SetForwardVector(V2UP);
+	SetForwardVector(Vector2(0,-1));
 	grounded = false;
-	AddForce(Vector2(0, -20));
+	AddForce(Vector2(0, -15));
+}
+void Player::JumpRight()
+{
+	SetForwardVector(Vector2(1,-1));
+	grounded = false;
+	AddForce(Vector2(0, -15));
+}
+void Player::JumpLeft()
+{
+	SetForwardVector(Vector2(-1,-1));
+	grounded = false;
+	AddForce(Vector2(0, -15));
 }
 
 Player::Player() :
@@ -166,12 +178,22 @@ void Player::GetInput()
 	}
 	if (input->KeyPressed(SDL_SCANCODE_A))
 	{
-		SetForwardVector(Vector2(-1, 0));
+		SetForwardVector(-V2RIGHT * 2);
+		AddForce(Vector2(-20, 0));
 		ResetAcceleration();
+	}
+	if (input->KeyDown(SDL_SCANCODE_W )&& input->KeyDown( SDL_SCANCODE_A) && grounded)
+	{
+		JumpLeft();
+	}
+	if (input->KeyDown(SDL_SCANCODE_W) && input->KeyDown(SDL_SCANCODE_A) && grounded)
+	{
+		JumpRight();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
-		SetForwardVector(Vector2(1, 0));
+		SetForwardVector(V2RIGHT * 2);
+		AddForce(Vector2(20, 0));
 		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_N))

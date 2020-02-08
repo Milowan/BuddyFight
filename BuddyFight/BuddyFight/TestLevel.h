@@ -7,8 +7,10 @@
 #include "SceneManager.h"
 #include "Player.h"
 #include "ChainPlatform.h"
-#include "HingePlatform.h"
+#include "HingePlatformEast.h"
+#include "HingePlatformWest.h"
 #include "BasePlatform.h"
+#include "Crate.h"
 
 class TestLevel : public Scene
 {
@@ -26,9 +28,21 @@ class TestLevel : public Scene
 		ChainPlatform* chainPlatform1;
 		ChainPlatform* chainPlatform2;
 
-		//HingePlatform* hingePlatform1;
-		//HingePlatform* hingePlatform2;
-		//HingePlatform* hingePlatform3;
+		HingePlatformEast* hingePlatform1;
+		HingePlatformWest* hingePlatform2;
+
+		Crate* crate1;
+		Crate* crate2;
+		Crate* crate3;
+		Crate* crate4;
+		Crate* crate5;
+		Crate* crate6;
+		Crate* crate7;
+		Crate* crate8;
+		Crate* crate9;
+		Crate* crate10;
+		Crate* crate11;
+		Crate* crate12;
 
 	protected:
 

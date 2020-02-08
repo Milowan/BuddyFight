@@ -40,7 +40,8 @@ private:
 	void Duck();
 	void PickUp();
 	void Jump();
-
+	void JumpRight();
+	void JumpLeft();
 	void GetInput();
 
 protected:

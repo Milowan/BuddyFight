@@ -4,7 +4,7 @@
 
 
 
-class HingePlatform : public Platform
+class HingePlatformEast : public Platform
 {
 	private:
 
@@ -26,8 +26,8 @@ class HingePlatform : public Platform
 
 		virtual void Update() override;
 
-		HingePlatform(float x, float y, float speed = 0.5f);
-		~HingePlatform();
+		HingePlatformEast(float x, float y, float speed = 0.5f);
+		~HingePlatformEast();
 
 };
 

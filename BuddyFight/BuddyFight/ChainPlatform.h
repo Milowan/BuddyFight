@@ -5,28 +5,28 @@
 
 
 
-class ChainPlatform : public Entity
+class ChainPlatform : public Platform
 {
-	private:
-		//Vector2* mOriginPos;
-		//Vector2* mNewPosLeft;
-		//Vector2* mNewPosRight;
+private:
+    //Vector2* mOriginPos;
+    //Vector2* mNewPosLeft;
+    //Vector2* mNewPosRight;
 
-		Entity* mChainLink1;
-		Entity* mChainLink2;
-		Entity* mChainLink3;
-		Entity* mChainLink4;
-		Entity* mChainLink5;
-		Platform* mChainPlatformBase;
+    Entity* mChainLink1;
+    Entity* mChainLink2;
+    Entity* mChainLink3;
+    Entity* mChainLink4;
+    Entity* mCrate;
+    Platform* mChainPlatformBase;
 
 
-	protected:
+protected:
 
-	public:
+public:
 
-		//void Swing();
+    //void Swing();
 
-		ChainPlatform(float x, float y);
-		~ChainPlatform();
+    ChainPlatform(float x, float y);
+    ~ChainPlatform();
 };
 
