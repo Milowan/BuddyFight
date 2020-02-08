@@ -1,28 +1,32 @@
 #pragma once
-#include "Platform.h"
+#include "Entity.h"
 #include "EntityPool.h"
-
+#include "Platform.h"
 
 
 
 class ChainPlatform : public Platform
 {
-	private:
-		//Vector2* mOriginPos;
-		//Vector2* mNewPosLeft;
-		//Vector2* mNewPosRight;
+private:
+    //Vector2* mOriginPos;
+    //Vector2* mNewPosLeft;
+    //Vector2* mNewPosRight;
 
-		Entity* mChainLink1;
-		Entity* mChainLink2;
-		Entity* mChainPlatformBase;
+    Entity* mChainLink1;
+    Entity* mChainLink2;
+    Entity* mChainLink3;
+    Entity* mChainLink4;
+    Entity* mCrate;
+    Platform* mChainPlatformBase;
 
-	protected:
 
-	public:
+protected:
 
-		//void Swing();
+public:
 
-		ChainPlatform(float x, float y);
-		~ChainPlatform();
+    //void Swing();
+
+    ChainPlatform(float x, float y);
+    ~ChainPlatform();
 };
 

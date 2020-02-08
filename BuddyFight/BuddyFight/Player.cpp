@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "MathHelper.h"
 
 void Player::Attack()
 {
@@ -10,10 +11,9 @@ void Player::Attack()
 	}
 	if (!hasWeapon)
 	{
-		//check if forward vector is positiive or negative (right or left)
-		//that way we know which fist to use
-		//proper fist position moves in the direction of forward vector
-		//attack sfx
+		lFist->SetPunching(true);
+		lFist->SetForwardVector(Vector2(-1, 0));
+		lFist->SetPunching(false);
 	}
 }
 
@@ -37,33 +37,66 @@ void Player::PickUp()
 	}
 }
 
-Player::Player(Texture* texture) :
-	PhysicsEntity(texture)
+void Player::Jump()
+{
+	SetForwardVector(Vector2(0,-1));
+	grounded = false;
+	AddForce(Vector2(0, -15));
+}
+void Player::JumpRight()
+{
+	SetForwardVector(Vector2(1,-1));
+	grounded = false;
+	AddForce(Vector2(0, -15));
+}
+void Player::JumpLeft()
+{
+	SetForwardVector(Vector2(-1,-1));
+	grounded = false;
+	AddForce(Vector2(0, -15));
+}
+
+Player::Player() :
+	PhysicsEntity(NULL)
 {
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
 	pool = EntityPool::GetInstance();
+	timer = Timer::GetInstance();
 
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
 
+	Texture* bodyS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* headS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* lFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* rFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+
 	hasWeapon = false;
 	isJumping = false;
+	maxSpeed = 60.0f;
 
-	SetPosition(10 * Graphics::BLOCK_WIDTH, 15 * Graphics::BLOCK_HEIGHT);
-	SetScale(Vector2(0.5f, 0.5f));
+	SetPosition(Graphics::BLOCK_WIDTH * 5, Graphics::BLOCK_HEIGHT * 3);
 
-	body = new Body(texture, this->GetPosition().x, this->GetPosition().y);
+	body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
+	body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
+	body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
 
-	head = new Head(texture, body->GetPosition().x, body->GetPosition().y - 2);
+	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
 	head->SetParent(this);
+	head->GetTexture()->SetWidth(20);
+	head->GetTexture()->SetHeight(20);
 
-	lFist = new Fist(texture, body->GetPosition().x * -0.2f, body->GetPosition().y * -0.3f);
+	lFist = new Fist(lFistS, body->GetPosition().x - 95, body->GetPosition().y - 50);
 	lFist->SetParent(this);
+	lFist->GetTexture()->SetWidth(15);
+	lFist->GetTexture()->SetHeight(15);
 
-	rFist = new Fist(texture, body->GetPosition().x * 0.2f, body->GetPosition().y * -0.3f);
+	rFist = new Fist(rFistS, body->GetPosition().x + 95, body->GetPosition().y - 50);
 	rFist->SetParent(this);
+	rFist->GetTexture()->SetWidth(15);
+	rFist->GetTexture()->SetHeight(15);
 }
 
 Player::~Player()
@@ -115,32 +148,81 @@ void Player::TakeDamage(int value)
 	currentHealth -= value;
 }
 
+void Player::HandleCollision(Entity* other)
+{
+	if (body->GetColliding() && other->GetMask() == GROUND)
+	{
+		SetPosition(GetPosition() + body->GetOverlap());
+		ResetAcceleration();
+		if (body->GetOverlap().y < 0)
+			grounded = true;
+	}
+	else
+	{
+		grounded = false;
+	}
+
+		acceleration = Vector2(0, 1);
+}
+
 void Player::GetInput()
 {
-	if (input->KeyPressed(SDL_SCANCODE_W))
+	if (input->KeyDown(SDL_SCANCODE_W) && grounded)
 	{
-		SetForwardVector(Vector2(0, -1));
-		printf("moved up!");
+		Jump();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_S))
 	{
 		Duck();
+		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_A))
 	{
-		SetForwardVector(Vector2(-1, 0));
+		SetForwardVector(-V2RIGHT * 2);
+		AddForce(Vector2(-20, 0));
+		ResetAcceleration();
+	}
+	if (input->KeyDown(SDL_SCANCODE_W )&& input->KeyDown( SDL_SCANCODE_A) && grounded)
+	{
+		JumpLeft();
+	}
+	if (input->KeyDown(SDL_SCANCODE_W) && input->KeyDown(SDL_SCANCODE_A) && grounded)
+	{
+		JumpRight();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
-		SetForwardVector(Vector2(1, 0));
+		SetForwardVector(V2RIGHT * 2);
+		AddForce(Vector2(20, 0));
+		ResetAcceleration();
 	}
-	if (input->KeyPressed(SDL_SCANCODE_E))
+	if (input->KeyPressed(SDL_SCANCODE_N))
 	{
 		Attack();
+	}
+	if (input->KeyReleased(SDL_SCANCODE_A))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_D))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_S))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_W))
+	{
+		SetForwardVector(V2ZERO);
 	}
 }
 
 void Player::Update()
 {
 	GetInput();
+
+	UpdatePhysics();
+
+	UpdateChildren();
 }

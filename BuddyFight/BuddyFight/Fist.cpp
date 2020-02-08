@@ -7,8 +7,8 @@
 Fist::Fist(Texture* texture, float x, float y) :
 	PhysicsEntity(texture, x, y)
 {
-	mask = FIST;
-	shape = CIRCLE;
+	SetMask(FIST);
+	SetShape(CIRCLE);
 	grounded = true;
 }
 

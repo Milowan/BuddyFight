@@ -41,12 +41,19 @@ void EntityPool::Update()
 			{
 				if (pool[i] != pool[j])
 				{
-					if (pool[i]->GetTexture() != NULL && pool[j]->GetTexture() != NULL)
+					if (pool[i]->CheckCollision(pool[j]))
+						pool[i]->HandleCollision(pool[j]);
+					
+					if (reset)
 					{
-						if (pool[i]->CheckCollision(pool[j]))
-							pool[i]->HandleCollision(pool[j]);
+						break;
 					}
 				}
+			}
+			if (reset)
+			{
+				reset = false;
+				break;
 			}
 			pool[i]->Update();
 			if (pool[i]->IsQueued())

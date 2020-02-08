@@ -22,6 +22,11 @@ void PhysicsEntity::Accelerate()
 	}
 }
 
+void PhysicsEntity::ResetAcceleration()
+{
+	acceleration = V2ZERO;
+}
+
 void PhysicsEntity::UpdatePhysics()
 {
 

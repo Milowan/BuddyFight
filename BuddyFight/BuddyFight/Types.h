@@ -35,7 +35,8 @@ enum CollisionMask
 	HEAD,
 	FIST,
 	WEAPON,
-	BULLET
+	BULLET,
+	SPIKE
 };
 
 enum Shape
