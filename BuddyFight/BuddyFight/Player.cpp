@@ -12,7 +12,6 @@ void Player::Attack()
 	{
 		lFist->SetPunching(true);
 		lFist->SetForwardVector(Vector2(-1, 0));
-		printf("attacked");
 		lFist->SetPunching(false);
 	}
 }
@@ -168,7 +167,11 @@ void Player::GetInput()
 	{
 		Attack();
 	}
-	else
+	if (input->KeyReleased(SDL_SCANCODE_A))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_D))
 	{
 		SetForwardVector(V2ZERO);
 	}
