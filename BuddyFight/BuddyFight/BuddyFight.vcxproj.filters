@@ -49,6 +49,18 @@
     <Filter Include="Source Files\Entities\Bodies">
       <UniqueIdentifier>{7088c620-e834-44ba-926d-a111ae474b1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Weapons">
+      <UniqueIdentifier>{9ee0b5cf-fa9d-4410-ba03-ac0a5a97fdce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Weapons">
+      <UniqueIdentifier>{bf54c7e3-f3ee-460f-8415-81dd160f1409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Weapons\Children">
+      <UniqueIdentifier>{2794e881-c756-4bd0-b195-5c73b2744904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Weapons\Children">
+      <UniqueIdentifier>{f617f3bc-9b4e-469b-b873-33e73ef0d231}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -128,6 +140,15 @@
     </ClCompile>
     <ClCompile Include="Head.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Entities\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileWeapon.cpp">
+      <Filter>Source Files\Entities\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Source Files\Entities\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +232,15 @@
     </ClInclude>
     <ClInclude Include="Head.h">
       <Filter>Header Files\Entities\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Entities\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileWeapon.h">
+      <Filter>Header Files\Entities\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeWeapon.h">
+      <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

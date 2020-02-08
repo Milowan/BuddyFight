@@ -153,16 +153,19 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="Ice.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeleeWeapon.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ProjectileWeapon.cpp" />
     <ClCompile Include="Spikes.cpp" />
     <ClCompile Include="SpringBoardPlatform.cpp" />
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedTexture.h" />
@@ -181,17 +184,20 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="Ice.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="PhysicsEntity.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ProjectileWeapon.h" />
     <ClInclude Include="Spikes.h" />
     <ClInclude Include="SpringBoardPlatform.h" />
     <ClInclude Include="TestLevel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

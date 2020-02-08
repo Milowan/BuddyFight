@@ -44,3 +44,10 @@ enum Shape
 	CIRCLE,
 	SQUARE
 };
+
+enum WeaponType
+{
+	STAB,
+	SLASH,
+	SHOOT
+};
