@@ -12,7 +12,6 @@ private:
 
 public:
 
-	Weapon();
 	Weapon(Texture* sprite, float x, float y);
 	~Weapon();
 

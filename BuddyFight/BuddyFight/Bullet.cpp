@@ -2,7 +2,7 @@
 
 
 Bullet::Bullet(float x, float y, int speed, int damage, Vector2 forward)
-	: PhysicsEntity("bullet.png", x, y)
+	: PhysicsEntity(new Texture("bullet.png"), x, y)
 {
 	mTimer = Timer::GetInstance();
 	mSpeed = speed;
