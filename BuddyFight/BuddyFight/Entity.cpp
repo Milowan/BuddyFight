@@ -310,10 +310,6 @@ bool Entity::CheckCollision(Entity* other)
 		}
 		else if (shape == Shape::CIRCLE && other->GetShape() == Shape::SQUARE)
 		{
-			if (mask == BODY)
-			{
-				cout << "Print statement for breakpoint" << endl;
-			}
 			if (bLeft > GetPosition().x)
 			{
 				difference.x = aRight - bLeft;
