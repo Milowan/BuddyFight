@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "MathHelper.h"
 
 void Player::Attack()
 {
@@ -36,12 +37,20 @@ void Player::PickUp()
 	}
 }
 
+void Player::Jump()
+{
+	SetForwardVector(V2UP);
+	grounded = false;
+	AddForce(Vector2(0, -20));
+}
+
 Player::Player() :
 	PhysicsEntity(NULL)
 {
 	audio = AudioManager::GetInstance();
 	input = InputManager::GetInstance();
 	pool = EntityPool::GetInstance();
+	timer = Timer::GetInstance();
 
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
@@ -136,17 +145,19 @@ void Player::HandleCollision(Entity* other)
 		if (body->GetOverlap().y < 0)
 			grounded = true;
 	}
+	else
+	{
 		grounded = false;
+	}
+
 		acceleration = Vector2(0, 1);
 }
 
 void Player::GetInput()
 {
-	if (input->KeyPressed(SDL_SCANCODE_W))
+	if (input->KeyDown(SDL_SCANCODE_W) && grounded)
 	{
-		SetForwardVector(Vector2(0, -1));
-		AddForce(Vector2(10, 10));
-		ResetAcceleration();
+		Jump();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_S))
 	{
@@ -172,6 +183,14 @@ void Player::GetInput()
 		SetForwardVector(V2ZERO);
 	}
 	if (input->KeyReleased(SDL_SCANCODE_D))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_S))
+	{
+		SetForwardVector(V2ZERO);
+	}
+	if (input->KeyReleased(SDL_SCANCODE_W))
 	{
 		SetForwardVector(V2ZERO);
 	}

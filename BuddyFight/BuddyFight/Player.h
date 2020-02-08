@@ -2,6 +2,7 @@
 #include "AudioManager.h"
 #include "InputManager.h"
 #include "MathHelper.h"
+#include "Timer.h"
 #include "Fist.h"
 #include "Body.h"
 #include "Head.h"
@@ -16,13 +17,17 @@ private:
 	static const int MAX_HEALTH = 100;
 	static const int MAX_STRENGTH = 10;
 	static const int MAX_PUNCH_DISTANCE = 50;
-
+	static const int MAX_JUMP_HEIGHT = 1000;
+	
 	int currentHealth;
 	int strength;
+
+	float jumpTimer;
 
 	InputManager* input;
 	AudioManager* audio;
 	EntityPool* pool;
+	Timer* timer;
 
 	Head* head;
 	Body* body;
@@ -34,6 +39,7 @@ private:
 	void Attack();
 	void Duck();
 	void PickUp();
+	void Jump();
 
 	void GetInput();
 
