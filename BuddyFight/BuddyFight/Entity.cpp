@@ -236,6 +236,33 @@ bool Entity::CheckCollision(Entity* other)
 		float diffY = 0.0f;
 		Vector2 difference = GetPosition() - other->GetPosition();
 
+		if (GetPosition().x >= other->GetPosition().x)
+		{
+			diffX = bRight - aLeft + 1.0f;
+		}
+		else
+		{
+			diffX = -(aRight - bLeft) - 1.0f;
+		}
+
+		if (GetPosition().y >= other->GetPosition().y)
+		{
+			diffY = bBottom - aTop + 1.0f;
+		}
+		else
+		{
+			diffY = -(aBottom - bTop) - 1.0f;
+		}
+
+		if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
+		{
+			overlapVector.y = diffY;
+		}
+		else
+		{
+			overlapVector.x = diffX;
+		}
+
 		if (shape == Shape::SQUARE && other->GetShape() == Shape::SQUARE)
 		{
 			if (aBottom >= bTop &&
@@ -244,6 +271,7 @@ bool Entity::CheckCollision(Entity* other)
 				aRight >= bLeft)
 			{
 				colliding = true;
+				return colliding;
 			}
 		}
 		else if (shape == Shape::SQUARE && other->GetShape() == Shape::CIRCLE)
@@ -277,39 +305,45 @@ bool Entity::CheckCollision(Entity* other)
 			if (difference.GetMagnitude() < other->texture->GetWidth() / 2)
 			{
 				colliding = true;
+				return colliding;
 			}
 		}
 		else if (shape == Shape::CIRCLE && other->GetShape() == Shape::SQUARE)
 		{
+			if (mask == BODY)
+			{
+				cout << "Print statement for breakpoint" << endl;
+			}
 			if (bLeft > GetPosition().x)
 			{
-				difference.x = bLeft;
+				difference.x = aRight - bLeft;
 			}
 			else if (bRight < GetPosition().x)
 			{
-				difference.x = bRight;
+				difference.x = bRight - aLeft;
 			}
 			else
 			{
-				difference.x = GetPosition().x;
+				difference.x = 0.0f;
 			}
 
 			if (bTop > GetPosition().y)
 			{
-				difference.y = bTop;
+				difference.y = aBottom - bTop;
 			}
 			else if (bBottom < GetPosition().y)
 			{
-				difference.y = bBottom;
+				difference.y = bBottom - aTop;
 			}
 			else
 			{
-				difference.y = GetPosition().y;
+				difference.y = 0.0f;
 			}
 
 			if (difference.GetMagnitude() < texture->GetWidth() / 2)
 			{
 				colliding = true;
+				return colliding;
 			}
 		}
 		else if (shape == Shape::CIRCLE && other->GetShape() == Shape::CIRCLE)
@@ -320,48 +354,26 @@ bool Entity::CheckCollision(Entity* other)
 			if (difference.GetMagnitude() < totalRadii)
 			{
 				colliding = true;
+				return colliding;
 			}
-		}
-
-		if (GetPosition().x >= other->GetPosition().x)
-		{
-			diffX = bRight - aLeft + 1.0f;
-		}
-		else
-		{
-			diffX = -(aRight - bLeft) - 1.0f;
-		}
-
-		if (GetPosition().y >= other->GetPosition().y)
-		{
-			diffY = bBottom - aTop + 1.0f;
-		}
-		else
-		{
-			diffY = -(aBottom - bTop) - 1.0f;
-			if (other->GetMask() == GROUND)
-				grounded = true;
-		}
-
-		if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
-		{
-			overlapVector.y = diffY;
-		}
-		else
-		{
-			overlapVector.x = diffX;
 		}
 	}
 
 	for (int i = 0; i < children.size(); ++i)
 	{
 		if (children[i]->CheckCollision(other))
+		{
 			colliding = true;
+			return colliding;
+		}
 
 		for (int j = 0; j < other->GetChildren().size(); ++j)
 		{
 			if (children[i]->CheckCollision(other->GetChildren()[j]))
+			{
 				colliding = true;
+				return colliding;
+			}
 		}
 	}
 

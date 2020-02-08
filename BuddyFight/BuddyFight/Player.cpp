@@ -130,9 +130,12 @@ void Player::TakeDamage(int value)
 
 void Player::HandleCollision(Entity* other)
 {
-	if (this->GetColliding() && other->GetMask() == GROUND)
+	if (body->GetColliding() && other->GetMask() == GROUND)
 	{
-		this->overlapVector += body->GetPosition();
+		SetPosition(GetPosition() + body->GetOverlap());
+		ResetAcceleration();
+		if (body->GetOverlap().y < 0)
+			grounded = true;
 	}
 }
 
