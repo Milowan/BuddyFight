@@ -56,7 +56,7 @@ Player::Player() :
 	isJumping = false;
 	maxSpeed = 60.0f;
 
-	SetPosition(Graphics::BLOCK_WIDTH * 20, Graphics::BLOCK_HEIGHT * 10);
+	SetPosition(Graphics::BLOCK_WIDTH * 5, Graphics::BLOCK_HEIGHT * 3);
 
 	body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
 	body->SetParent(this);
@@ -137,6 +137,8 @@ void Player::HandleCollision(Entity* other)
 		if (body->GetOverlap().y < 0)
 			grounded = true;
 	}
+		grounded = false;
+		acceleration = Vector2(0, 1);
 }
 
 void Player::GetInput()
@@ -144,23 +146,31 @@ void Player::GetInput()
 	if (input->KeyPressed(SDL_SCANCODE_W))
 	{
 		SetForwardVector(Vector2(0, -1));
-		printf("moved up!");
+		AddForce(Vector2(10, 10));
+		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_S))
 	{
 		Duck();
+		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_A))
 	{
 		SetForwardVector(Vector2(-1, 0));
+		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
 		SetForwardVector(Vector2(1, 0));
+		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_N))
 	{
 		Attack();
+	}
+	else
+	{
+		SetForwardVector(V2ZERO);
 	}
 }
 
