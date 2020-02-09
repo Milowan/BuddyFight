@@ -13,6 +13,8 @@ void Player::Attack()
 	{
 		lFist->SetPunching(true);
 		lFist->SetForwardVector(Vector2(-1, 0));
+		lFist->AddForce(Vector2(strength, strength));
+		lFist->ResetAcceleration();
 		lFist->SetPunching(false);
 	}
 }
@@ -39,22 +41,11 @@ void Player::PickUp()
 
 void Player::Jump()
 {
-	SetForwardVector(Vector2(0,-1));
+	SetForwardVector(Vector2(forwardVector.x,-1));
 	grounded = false;
-	AddForce(Vector2(0, -15));
+	AddForce(Vector2(forwardVector.x, -15));
 }
-void Player::JumpRight()
-{
-	SetForwardVector(Vector2(1,-1));
-	grounded = false;
-	AddForce(Vector2(0, -15));
-}
-void Player::JumpLeft()
-{
-	SetForwardVector(Vector2(-1,-1));
-	grounded = false;
-	AddForce(Vector2(0, -15));
-}
+
 
 Player::Player() :
 	PhysicsEntity(NULL)
@@ -184,11 +175,11 @@ void Player::GetInput()
 	}
 	if (input->KeyDown(SDL_SCANCODE_W )&& input->KeyDown( SDL_SCANCODE_A) && grounded)
 	{
-		JumpLeft();
+		Jump();
 	}
 	if (input->KeyDown(SDL_SCANCODE_W) && input->KeyDown(SDL_SCANCODE_A) && grounded)
 	{
-		JumpRight();
+		Jump();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
