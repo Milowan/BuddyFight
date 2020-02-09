@@ -3,7 +3,7 @@
 ProjectileWeapon::ProjectileWeapon(Texture* texture, float x, float y)
 	: Weapon(texture, x, y)
 {
-
+	bPool = BulletPool::GetInstance();
 }
 
 ProjectileWeapon::~ProjectileWeapon()
@@ -27,10 +27,15 @@ void ProjectileWeapon::Update()
 {
 	if (mFiring)
 	{
-		// Once I figure out bullets and their object pooling I can call one from here 
-
-
-		ammo--;
-		
+		currentTime += mTimer->GetDeltaTime();
+		if (currentTime >= mFireRate)
+		{
+			Bullet* currentBullet = bPool->GetInActiveBullet();
+			currentBullet->SetPosition(this->GetPosition());
+			currentBullet->BulletStats(mDamage, mSpeed, mForward);
+			ammo--;
+			mFiring = false;
+			currentTime = 0;
+		}
 	}
 }

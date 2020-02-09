@@ -99,4 +99,5 @@ void GameManager::Render()
 	pool->Render();
 
 	graphics->Render();
+
 }

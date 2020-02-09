@@ -14,9 +14,10 @@ private:
 
 public:
 
-	Bullet(float x, float y, int speed, int damage, Vector2 forward);
+	Bullet();
 	~Bullet();
 
+	void BulletStats(int speed, int damage, Vector2 forward);
 	int GetDamage();
 
 	void Update() override;

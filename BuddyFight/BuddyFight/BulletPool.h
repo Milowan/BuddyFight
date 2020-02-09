@@ -14,7 +14,7 @@ protected:
 
 public:
 
-    static const int MAX_BULLETS = 20;
+    static const int MAX_BULLETS = 30;
     Bullet* bullets[MAX_BULLETS];
 
     static BulletPool* GetInstance();
