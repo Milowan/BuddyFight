@@ -39,6 +39,7 @@ void SceneManager::AddScene(Scene* scene)
 void SceneManager::ChangeScene(Scene* scene)
 {
 	pool->FlagReset();
+	delete currentScene;
 	currentScene = scene;
 	pool->EmptyPool();
 	scene->InitializeScene();
