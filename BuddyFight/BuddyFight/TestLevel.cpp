@@ -97,6 +97,10 @@ void TestLevel::InitializeScene()
 	// Weapons
 	mPistol = new Pistol();
 	pool->AddEntity(mPistol);
+	mSword = new Sword();
+	pool->AddEntity(mSword);
+	mSpear = new Spear();
+	pool->AddEntity(mSpear);
 
 	TestLevelAudio();
 }

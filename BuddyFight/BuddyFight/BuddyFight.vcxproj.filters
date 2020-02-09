@@ -156,14 +156,20 @@
     <ClCompile Include="BulletPool.cpp">
       <Filter>Source Files\Pools</Filter>
     </ClCompile>
-    <ClCompile Include="Pistol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StartScreen.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="WinScreen.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pistol.cpp">
+      <Filter>Source Files\Entities\Weapons\Children</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Source Files\Entities\Weapons\Children</Filter>
+    </ClCompile>
+    <ClCompile Include="Spear.cpp">
+      <Filter>Source Files\Entities\Weapons\Children</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,14 +269,20 @@
     <ClInclude Include="BulletPool.h">
       <Filter>Header Files\Pools</Filter>
     </ClInclude>
-    <ClInclude Include="Pistol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StartScreen.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="WinScreen.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pistol.h">
+      <Filter>Header Files\Entities\Weapons\Children</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Header Files\Entities\Weapons\Children</Filter>
+    </ClInclude>
+    <ClInclude Include="Spear.h">
+      <Filter>Header Files\Entities\Weapons\Children</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

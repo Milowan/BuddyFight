@@ -15,7 +15,7 @@ private:
 protected:
 	float activeDuration;
 	virtual void Update() override; // As long as the weapon update runs the hitbox will handle itself and you wont be able to fire when already firing
-	virtual void Fire() override; // The player can call this to activate their current weapon
+	virtual void Fire() override; // The player can call this to activate their current weapon's hitbox
 
 };
 

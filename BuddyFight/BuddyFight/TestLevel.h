@@ -11,8 +11,11 @@
 #include "HingePlatformWest.h"
 #include "BasePlatform.h"
 #include "Crate.h"
-#include "Pistol.h"
 #include "Spikes.h"
+//Weapon includes
+#include "Pistol.h"
+#include "Sword.h"
+#include "Spear.h"
 
 
 class TestLevel : public Scene
@@ -66,9 +69,12 @@ class TestLevel : public Scene
 		Spikes* spike16;
 		Spikes* spike17;
 
+		// Weapons
 		EntityPool* pool;
 		BulletPool* bPool;
 		Pistol* mPistol;
+		Sword* mSword;
+		Spear* mSpear;
 
 	protected:
 
