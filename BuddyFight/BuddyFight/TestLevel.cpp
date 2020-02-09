@@ -31,32 +31,32 @@ void TestLevel::InitializeScene()
 
 	hingePlatform1 = new HingePlatformEast(7 * Graphics::BLOCK_WIDTH, 9* Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(hingePlatform1);
-	hingePlatform2 = new HingePlatformWest(34 * Graphics::BLOCK_WIDTH, 9 * Graphics::BLOCK_HEIGHT);
+	hingePlatform2 = new HingePlatformWest(33 * Graphics::BLOCK_WIDTH, 9 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(hingePlatform2);
 
-	crate1 = new Crate(22 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate1 = new Crate(21 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate1);
-	crate2 = new Crate(20 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate2 = new Crate(19 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate2);
-	crate3 = new Crate(18 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate3 = new Crate(17 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate3);
-	crate4 = new Crate(16 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate4 = new Crate(15 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate4);
-	crate5 = new Crate(24 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate5 = new Crate(23 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate5);
-	crate6 = new Crate(26 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
+	crate6 = new Crate(25 * Graphics::BLOCK_WIDTH, 16 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate6);
-	crate7 = new Crate(24 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
+	crate7 = new Crate(23 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate7);
-	crate8 = new Crate(22 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
+	crate8 = new Crate(21 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate8);
-	crate9 = new Crate(20 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
+	crate9 = new Crate(19 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate9);
-	crate10 = new Crate(18 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
+	crate10 = new Crate(17 * Graphics::BLOCK_WIDTH, 14 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate10);
-	crate11 = new Crate(22 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
+	crate11 = new Crate(21 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate11);
-	crate12 = new Crate(20 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
+	crate12 = new Crate(19 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate12);
 
 	spike1 = new Spikes(1 * Graphics::BLOCK_WIDTH, 20 * Graphics::BLOCK_HEIGHT);
