@@ -16,6 +16,7 @@ private:
 	EntityPool* pool;
 
 	SceneManager();
+	~SceneManager();
 
 public:
 

@@ -25,6 +25,11 @@ SceneManager::SceneManager()
 	pool = EntityPool::GetInstance();
 }
 
+SceneManager::~SceneManager()
+{
+	delete currentScene;
+}
+
 Scene* SceneManager::GetCurrentScene()
 {
 	return currentScene;
