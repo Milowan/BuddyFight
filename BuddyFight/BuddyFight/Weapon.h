@@ -27,5 +27,14 @@ protected:
 	bool GetIsCollected();
 	void Collect();
 
+	float minSpin;
+	float maxSpin;
+	float spinSpeed;
+	float currentWidth;
+	float currentHeight;
+	bool forward = false;
+	bool horizontal;
+	void Update();
+
 };
 

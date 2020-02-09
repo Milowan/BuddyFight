@@ -25,6 +25,7 @@ void MeleeWeapon::Fire()
 
 void MeleeWeapon::Update()
 {
+	Weapon::Update();
 	if (mFiring)
 	{
 		if (mask == CollisionMask::NONE)

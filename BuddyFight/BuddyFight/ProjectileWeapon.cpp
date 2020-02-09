@@ -25,6 +25,7 @@ void ProjectileWeapon::Fire()
 
 void ProjectileWeapon::Update()
 {
+	Weapon::Update();
 	if (mFiring)
 	{
 		currentTime += mTimer->GetDeltaTime();
