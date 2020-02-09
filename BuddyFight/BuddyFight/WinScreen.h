@@ -6,13 +6,13 @@
 #include "Timer.h"
 #include "SceneManager.h"
 #include "StartScreen.h"
-#include "TestLevel.h"
 
 
 
 
 
-class PlayerTwoWinScreen : public Scene
+
+class WinScreen : public Scene
 {
 private:
 	Timer* mTimer;
@@ -24,14 +24,13 @@ private:
 	Entity* winLogo;
 
 	// Play Mode Entities    
-	Entity* playerOne;
 	Entity* restart;
 
 
 public:
 
-	PlayerTwoWinScreen();
-	~PlayerTwoWinScreen();
+	WinScreen();
+	~WinScreen();
 
 	void InitializeScene() override;
 	void WinScreenAudio();

@@ -12,6 +12,8 @@
 #include "BasePlatform.h"
 #include "Crate.h"
 #include "Pistol.h"
+#include "Spikes.h"
+
 
 class TestLevel : public Scene
 {
@@ -44,6 +46,25 @@ class TestLevel : public Scene
 		Crate* crate10;
 		Crate* crate11;
 		Crate* crate12;
+
+
+		Spikes* spike1;
+		Spikes* spike2;
+		Spikes* spike3;
+		Spikes* spike4;
+		Spikes* spike5;
+		Spikes* spike6;
+		Spikes* spike7;
+		Spikes* spike8;
+		Spikes* spike9;
+		Spikes* spike10;
+		Spikes* spike11;
+		Spikes* spike12;
+		Spikes* spike13;
+		Spikes* spike14;
+		Spikes* spike15;
+		Spikes* spike16;
+		Spikes* spike17;
 
 		EntityPool* pool;
 		BulletPool* bPool;

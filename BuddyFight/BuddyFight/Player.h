@@ -11,7 +11,7 @@
 
 
 class Player :
-	public PhysicsEntity {
+public PhysicsEntity {
 
 private:
 	static const int MAX_HEALTH = 100;
