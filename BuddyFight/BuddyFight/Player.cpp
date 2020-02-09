@@ -44,6 +44,7 @@ void Player::Jump()
 	SetForwardVector(Vector2(forwardVector.x,-1));
 	grounded = false;
 	AddForce(Vector2(forwardVector.x, -15));
+	PlaySFX();
 }
 
 
@@ -207,6 +208,11 @@ void Player::GetInput()
 	{
 		SetForwardVector(V2ZERO);
 	}
+}
+
+void Player::PlaySFX()
+{
+	audio->PlaySFX("Audio/jump.wav", 0);
 }
 
 void Player::Update()

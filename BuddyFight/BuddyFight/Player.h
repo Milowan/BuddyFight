@@ -44,6 +44,7 @@ private:
 	void JumpLeft();
 	void GetInput();
 
+
 protected:
 
 	bool isJumping;
@@ -60,6 +61,8 @@ public:
 	void SetStrength(int value);
 
 	void TakeDamage(int value);
+
+	void PlaySFX();
 
 	void HandleCollision(Entity* other) override;
 
