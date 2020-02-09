@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Entities\Weapons\Children">
       <UniqueIdentifier>{f617f3bc-9b4e-469b-b873-33e73ef0d231}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\Platforms">
+      <UniqueIdentifier>{e9f7ded9-38b4-472a-b0c4-f021d6d50ce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Platforms">
+      <UniqueIdentifier>{eeb9e028-e49b-484f-ad97-8f2c3d963d29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,16 +117,10 @@
     <ClCompile Include="Fist.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Crate.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="ChainPlatform.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Spikes.cpp">
@@ -141,15 +141,6 @@
     <ClCompile Include="MeleeWeapon.cpp">
       <Filter>Source Files\Entities\Weapons</Filter>
     </ClCompile>
-    <ClCompile Include="BasePlatform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HingePlatformEast.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HingePlatformWest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Entities\Weapons</Filter>
     </ClCompile>
@@ -164,6 +155,21 @@
     </ClCompile>
     <ClCompile Include="WinScreen.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainPlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="BasePlatform.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformEast.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformWest.cpp">
+      <Filter>Source Files\Entities\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,13 +224,7 @@
     <ClInclude Include="Fist.h">
       <Filter>Header Files\Entities\Bodies</Filter>
     </ClInclude>
-    <ClInclude Include="Platform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ChainPlatform.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Spikes.h">
@@ -248,15 +248,6 @@
     <ClInclude Include="MeleeWeapon.h">
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="BasePlatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HingePlatformEast.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HingePlatformWest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
@@ -271,6 +262,21 @@
     </ClInclude>
     <ClInclude Include="WinScreen.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="ChainPlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformEast.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformWest.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePlatform.h">
+      <Filter>Header Files\Entities\Platforms</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
