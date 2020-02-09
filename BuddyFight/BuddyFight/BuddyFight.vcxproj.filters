@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Entities\Weapons\Children">
       <UniqueIdentifier>{f617f3bc-9b4e-469b-b873-33e73ef0d231}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Platforms">
+      <UniqueIdentifier>{f8d0e1fd-6a02-4a30-8f06-5c88af891761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Platforms">
+      <UniqueIdentifier>{2d6b0140-f16d-4648-b594-d7267aa0d201}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,16 +117,10 @@
     <ClCompile Include="Fist.cpp">
       <Filter>Source Files\Entities\Bodies</Filter>
     </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Crate.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="ChainPlatform.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Spikes.cpp">
@@ -140,15 +140,6 @@
     </ClCompile>
     <ClCompile Include="MeleeWeapon.cpp">
       <Filter>Source Files\Entities\Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="BasePlatform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HingePlatformEast.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HingePlatformWest.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Entities\Weapons</Filter>
@@ -170,6 +161,21 @@
     </ClCompile>
     <ClCompile Include="Spear.cpp">
       <Filter>Source Files\Entities\Weapons\Children</Filter>
+    </ClCompile>
+    <ClCompile Include="BasePlatform.cpp">
+      <Filter>Source Files\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformEast.cpp">
+      <Filter>Source Files\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="HingePlatformWest.cpp">
+      <Filter>Source Files\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainPlatform.cpp">
+      <Filter>Source Files\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,13 +230,7 @@
     <ClInclude Include="Fist.h">
       <Filter>Header Files\Entities\Bodies</Filter>
     </ClInclude>
-    <ClInclude Include="Platform.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ChainPlatform.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Spikes.h">
@@ -254,15 +254,6 @@
     <ClInclude Include="MeleeWeapon.h">
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="BasePlatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HingePlatformEast.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HingePlatformWest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Header Files\Entities\Weapons</Filter>
     </ClInclude>
@@ -283,6 +274,21 @@
     </ClInclude>
     <ClInclude Include="Spear.h">
       <Filter>Header Files\Entities\Weapons\Children</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformEast.h">
+      <Filter>Header Files\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePlatform.h">
+      <Filter>Header Files\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="HingePlatformWest.h">
+      <Filter>Header Files\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="ChainPlatform.h">
+      <Filter>Header Files\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Platforms</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
