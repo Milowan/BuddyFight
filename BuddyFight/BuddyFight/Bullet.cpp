@@ -5,6 +5,7 @@ Bullet::Bullet()
 	: PhysicsEntity(new Texture("bullet.png"), 0, 0)
 {
 	mTimer = Timer::GetInstance();
+	SetActive(false);
 }
 
 Bullet::~Bullet()

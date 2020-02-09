@@ -57,6 +57,25 @@ void Weapon::Update()
 	}
 }
 
+void Weapon::HandleCollision(Entity* other)
+{
+	if (other->GetMask() == CollisionMask::GROUND)
+	{
+		if (overlapVector.y < 0)
+		{
+			SetPosition(GetPosition() + overlapVector);
+			ResetAcceleration();
+			grounded = true;
+		}
+		if (overlapVector.y > 0)
+		{
+			SetPosition(GetPosition() - overlapVector);
+			ResetAcceleration();
+			grounded = true;
+		}
+	}
+}
+
 void Weapon::Drop()
 {
 	isCollected = false;
