@@ -11,6 +11,7 @@
 #include "HingePlatformWest.h"
 #include "BasePlatform.h"
 #include "Crate.h"
+#include "Pistol.h"
 
 class TestLevel : public Scene
 {
@@ -43,6 +44,10 @@ class TestLevel : public Scene
 		Crate* crate10;
 		Crate* crate11;
 		Crate* crate12;
+
+		EntityPool* pool;
+		BulletPool* bPool;
+		Pistol* mPistol;
 
 	protected:
 

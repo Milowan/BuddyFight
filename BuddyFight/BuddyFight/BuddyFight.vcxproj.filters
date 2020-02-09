@@ -156,6 +156,9 @@
     <ClCompile Include="BulletPool.cpp">
       <Filter>Source Files\Pools</Filter>
     </ClCompile>
+    <ClCompile Include="Pistol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="BulletPool.h">
       <Filter>Header Files\Pools</Filter>
+    </ClInclude>
+    <ClInclude Include="Pistol.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

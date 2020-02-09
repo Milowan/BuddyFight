@@ -1,17 +1,21 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(float x, float y, int speed, int damage, Vector2 forward)
-	: PhysicsEntity(new Texture("bullet.png"), x, y)
+Bullet::Bullet()
+	: PhysicsEntity(new Texture("bullet.png"), 0, 0)
 {
 	mTimer = Timer::GetInstance();
-	mSpeed = speed;
-	mDamage = damage;
-	mForward = forward;
 }
 
 Bullet::~Bullet()
 {
+}
+
+void Bullet::BulletStats(int speed, int damage, Vector2 forward)
+{
+	mSpeed = speed;
+	mDamage = damage;
+	mForward = forward.Normalized();
 }
 
 int Bullet::GetDamage()

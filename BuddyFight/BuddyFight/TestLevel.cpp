@@ -12,7 +12,8 @@ void TestLevel::InitializeScene()
 	mTimer = Timer::GetInstance();
 	mInputManager = InputManager::GetInstance();
 	mAudioManager = AudioManager::GetInstance();
-	EntityPool* pool = EntityPool::GetInstance();
+	pool = EntityPool::GetInstance();
+	bPool = BulletPool::GetInstance();
 
 	player1 = new Player();
 	player1->SetPosition(player1->GetPosition());
@@ -56,6 +57,10 @@ void TestLevel::InitializeScene()
 	pool->AddEntity(crate11);
 	crate12 = new Crate(20 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate12);
+
+	// Weapons
+	mPistol = new Pistol();
+	pool->AddEntity(mPistol);
 }
 
 void TestLevel::TestLevelAudio()
