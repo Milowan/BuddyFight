@@ -31,9 +31,7 @@ protected:
 	float maxSpin;
 	float spinSpeed;
 	float currentWidth;
-	float currentHeight;
 	bool forward = false;
-	bool horizontal;
 	void Update();
 
 };

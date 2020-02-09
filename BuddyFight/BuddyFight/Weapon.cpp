@@ -5,6 +5,7 @@ Weapon::Weapon(Texture* texture, float x, float y)
 	: PhysicsEntity(texture, x, y)
 {
 	mTimer = Timer::GetInstance();
+	maxSpeed = 9;
 }
 
 Weapon::~Weapon()
@@ -23,66 +24,34 @@ void Weapon::Collect()
 
 void Weapon::Update()
 {
+	UpdatePhysics();
 	if (!isCollected)
 	{
-		if (horizontal)
+		currentWidth = GetTexture()->GetWidth();
+		if (!forward)
 		{
-			currentWidth = GetTexture()->GetWidth();
-			if (!forward)
+			if (currentWidth >= minSpin)
 			{
-				if (currentWidth >= minSpin)
-				{
-					currentWidth -= spinSpeed;
-					GetTexture()->SetWidth(currentWidth);
-				}
-				else
-				{
-					forward = true;
-					return;
-				}
+				currentWidth -= spinSpeed;
+				GetTexture()->SetWidth(currentWidth);
 			}
 			else
 			{
-				if (currentWidth <= maxSpin)
-				{
-					currentWidth += spinSpeed;
-					GetTexture()->SetWidth(currentWidth);
-				}
-				else
-				{
-					forward = false;
-					return;
-				}
+				forward = true;
+				return;
 			}
 		}
-		if (!horizontal)
+		else
 		{
-			currentHeight = GetTexture()->GetHeight();
-			if (!forward)
+			if (currentWidth <= maxSpin)
 			{
-				if (currentHeight >= minSpin)
-				{
-					currentHeight -= spinSpeed;
-					GetTexture()->SetHeight(currentHeight);
-				}
-				else
-				{
-					forward = true;
-					return;
-				}
+				currentWidth += spinSpeed;
+				GetTexture()->SetWidth(currentWidth);
 			}
 			else
 			{
-				if (currentHeight <= maxSpin)
-				{
-					currentHeight += spinSpeed;
-					GetTexture()->SetHeight(currentHeight);
-				}
-				else
-				{
-					forward = false;
-					return;
-				}
+				forward = false;
+				return;
 			}
 		}
 	}
