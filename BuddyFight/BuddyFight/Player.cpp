@@ -43,7 +43,7 @@ void Player::Jump()
 {
 	SetForwardVector(Vector2(forwardVector.x,-1));
 	grounded = false;
-	AddForce(Vector2(forwardVector.x, -15));
+	AddForce(Vector2(0, -15));
 	PlaySFX();
 }
 
@@ -140,23 +140,6 @@ void Player::TakeDamage(int value)
 	currentHealth -= value;
 }
 
-void Player::HandleCollision(Entity* other)
-{
-	if (body->GetColliding() && other->GetMask() == GROUND)
-	{
-		SetPosition(GetPosition() + body->GetOverlap());
-		ResetAcceleration();
-		if (body->GetOverlap().y < 0)
-			grounded = true;
-	}
-	else
-	{
-		grounded = false;
-	}
-
-		acceleration = Vector2(0, 1);
-}
-
 void Player::GetInput()
 {
 	if (input->KeyDown(SDL_SCANCODE_W) && grounded)
@@ -173,14 +156,6 @@ void Player::GetInput()
 		SetForwardVector(-V2RIGHT * 2);
 		AddForce(Vector2(-20, 0));
 		ResetAcceleration();
-	}
-	if (input->KeyDown(SDL_SCANCODE_W )&& input->KeyDown( SDL_SCANCODE_A) && grounded)
-	{
-		Jump();
-	}
-	if (input->KeyDown(SDL_SCANCODE_W) && input->KeyDown(SDL_SCANCODE_A) && grounded)
-	{
-		Jump();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
@@ -218,6 +193,11 @@ void Player::PlaySFX()
 void Player::Update()
 {
 	GetInput();
+
+	if (!body->GetColliding())
+	{
+		grounded = false;
+	}
 
 	UpdatePhysics();
 

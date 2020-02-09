@@ -44,10 +44,9 @@ void PhysicsEntity::UpdatePhysics()
 		{
 			forwardVector.y = 0;
 		}
-		else
-		{
-			AddForce(GRAVITY);
-		}
+
+		AddForce(GRAVITY);
+		
 	}
 
 	AddForce(forwardVector);

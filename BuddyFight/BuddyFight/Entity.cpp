@@ -159,6 +159,16 @@ void Entity::UpdateChildren()
 	}
 }
 
+void Entity::SetGrounded(bool onGround)
+{
+	grounded = onGround;
+}
+
+bool Entity::IsGrounded()
+{
+	return grounded;
+}
+
 Texture* Entity::GetTexture()
 {
 	return texture;
@@ -220,7 +230,7 @@ bool Entity::IsQueued()
 bool Entity::CheckCollision(Entity* other)
 {
 	colliding = false;
-	if (texture != NULL && other->GetTexture() != NULL)
+	if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
 	{
 		float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
 		float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
@@ -238,20 +248,20 @@ bool Entity::CheckCollision(Entity* other)
 
 		if (GetPosition().x >= other->GetPosition().x)
 		{
-			diffX = bRight - aLeft + 1.0f;
+			diffX = bRight - aLeft;
 		}
 		else
 		{
-			diffX = -(aRight - bLeft) - 1.0f;
+			diffX = -(aRight - bLeft);
 		}
 
 		if (GetPosition().y >= other->GetPosition().y)
 		{
-			diffY = bBottom - aTop + 1.0f;
+			diffY = bBottom - aTop;
 		}
 		else
 		{
-			diffY = -(aBottom - bTop) - 1.0f;
+			diffY = -(aBottom - bTop);
 		}
 
 		if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
@@ -263,95 +273,12 @@ bool Entity::CheckCollision(Entity* other)
 			overlapVector.x = diffX;
 		}
 
-		if (shape == Shape::SQUARE && other->GetShape() == Shape::SQUARE)
+		if (aBottom >= bTop &&
+			aTop <= bBottom &&
+			aLeft <= bRight &&
+			aRight >= bLeft)
 		{
-			if (aBottom >= bTop &&
-				aTop <= bBottom &&
-				aLeft <= bRight &&
-				aRight >= bLeft)
-			{
-				colliding = true;
-				return colliding;
-			}
-		}
-		else if (shape == Shape::SQUARE && other->GetShape() == Shape::CIRCLE)
-		{
-			if (aLeft > other->GetPosition().x)
-			{
-				difference.x = aLeft;
-			}
-			else if (aRight < other->GetPosition().x)
-			{
-				difference.x = aRight;
-			}
-			else
-			{
-				difference.x = other->GetPosition().x;
-			}
-
-			if (aTop > other->GetPosition().y)
-			{
-				difference.y = aTop;
-			}
-			else if (aBottom < other->GetPosition().y)
-			{
-				difference.y = aBottom;
-			}
-			else
-			{
-				difference.y = other->GetPosition().y;
-			}
-
-			if (difference.GetMagnitude() < other->texture->GetWidth() / 2)
-			{
-				colliding = true;
-				return colliding;
-			}
-		}
-		else if (shape == Shape::CIRCLE && other->GetShape() == Shape::SQUARE)
-		{
-			if (bLeft > GetPosition().x)
-			{
-				difference.x = aRight - bLeft;
-			}
-			else if (bRight < GetPosition().x)
-			{
-				difference.x = bRight - aLeft;
-			}
-			else
-			{
-				difference.x = 0.0f;
-			}
-
-			if (bTop > GetPosition().y)
-			{
-				difference.y = aBottom - bTop;
-			}
-			else if (bBottom < GetPosition().y)
-			{
-				difference.y = bBottom - aTop;
-			}
-			else
-			{
-				difference.y = 0.0f;
-			}
-
-			if (difference.GetMagnitude() < texture->GetWidth() / 2)
-			{
-				colliding = true;
-				return colliding;
-			}
-		}
-		else if (shape == Shape::CIRCLE && other->GetShape() == Shape::CIRCLE)
-		{
-			float totalRadii = (texture->GetWidth() / 2) + (other->texture->GetWidth() / 2);
-
-
-			if (difference.GetMagnitude() < totalRadii)
-			{
-				colliding = true;
-				return colliding;
-			}
+			colliding = true;
 		}
 	}
 
@@ -359,16 +286,14 @@ bool Entity::CheckCollision(Entity* other)
 	{
 		if (children[i]->CheckCollision(other))
 		{
-			colliding = true;
-			return colliding;
+			children[i]->HandleCollision(other);
 		}
 
 		for (int j = 0; j < other->GetChildren().size(); ++j)
 		{
-			if (children[i]->CheckCollision(other->GetChildren()[j]))
+			if (children[i]->CheckCollision(other->children[j]))
 			{
-				colliding = true;
-				return colliding;
+				children[i]->HandleCollision(other->children[j]);
 			}
 		}
 	}

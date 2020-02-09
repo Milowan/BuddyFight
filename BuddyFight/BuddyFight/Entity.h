@@ -61,6 +61,9 @@ public:
 	vector<Entity*> GetChildren();
 	void UpdateChildren();
 
+	void SetGrounded(bool onGround);
+	bool IsGrounded();
+
 	Texture* GetTexture();
 
 	void SetMask(CollisionMask nMask);

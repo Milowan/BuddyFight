@@ -40,8 +40,6 @@ private:
 	void Duck();
 	void PickUp();
 	void Jump();
-	void JumpRight();
-	void JumpLeft();
 	void GetInput();
 
 
@@ -63,8 +61,6 @@ public:
 	void TakeDamage(int value);
 
 	void PlaySFX();
-
-	void HandleCollision(Entity* other) override;
 
 	void Update() override;
 
