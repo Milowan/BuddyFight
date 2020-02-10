@@ -174,6 +174,35 @@ void Player::PlayHurtSFX()
 	audio->PlaySFX("Audio/playerhit.wav", 0);
 }
 
+void Player::HandleCollision(Entity* other)
+{
+	if (weapon = dynamic_cast<Weapon*>(other))
+	{
+		other->SetPosition(rFist->GetPosition());
+		other->SetParent(rFist);
+	}
+
+	if (other == dynamic_cast<Fist*>(other))
+	{
+		TakeDamage(10);
+	}
+
+	if (other == dynamic_cast<Sword*>(other))
+	{
+		TakeDamage(20);
+	}
+
+	if (other == dynamic_cast<Spear*>(other))
+	{
+		TakeDamage(15);
+	}
+
+	if (other == dynamic_cast<Bullet*>(other))
+	{
+		TakeDamage(25);
+	}
+}
+
 void Player::GetInput()
 {
 	if (input->KeyDown(SDL_SCANCODE_W) && grounded)
@@ -233,6 +262,16 @@ void Player::Die()
 	if (this->GetPosition().y > Graphics::SCREEN_HEIGHT)
 	{
 		alive = false;
+	}
+
+	if (currentHealth <= 0)
+	{
+		delete this;
+		pool->RemoveEntity(this);
+		Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
+		pool->AddEntity(dead);
+		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+		pool->AddEntity(restart);
 	}
 }
 

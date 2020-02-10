@@ -8,6 +8,9 @@
 #include "Body.h"
 #include "Head.h"
 #include "Platform.h"
+#include "Sword.h"
+#include "Spear.h"
+#include "Bullet.h"
 
 
 
@@ -76,6 +79,8 @@ public:
 	void PlayJumpSFX();
 
 	void PlayHurtSFX();
+
+	void HandleCollision(Entity* other) override;
 
 	void Update() override;
 };
