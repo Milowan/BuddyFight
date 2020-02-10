@@ -150,9 +150,6 @@
     <ClCompile Include="StartScreen.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="WinScreen.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Pistol.cpp">
       <Filter>Source Files\Entities\Weapons\Children</Filter>
     </ClCompile>
@@ -261,9 +258,6 @@
       <Filter>Header Files\Pools</Filter>
     </ClInclude>
     <ClInclude Include="StartScreen.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="WinScreen.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Pistol.h">

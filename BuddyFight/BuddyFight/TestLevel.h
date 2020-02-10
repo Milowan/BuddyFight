@@ -5,7 +5,6 @@
 #include "Scene.h"
 #include "Timer.h"
 #include "SceneManager.h"
-#include "Player.h"
 #include "ChainPlatform.h"
 #include "HingePlatformEast.h"
 #include "HingePlatformWest.h"
@@ -16,6 +15,7 @@
 #include "Pistol.h"
 #include "Sword.h"
 #include "Spear.h"
+
 
 
 class TestLevel : public Scene

@@ -41,7 +41,7 @@ void Player::Jump()
 	SetForwardVector(Vector2(forwardVector.x * 0.5f, -1));
 	grounded = false;
 	AddForce(Vector2(0, -15));
-	PlaySFX();
+	PlayJumpSFX();
 }
 
 
@@ -147,9 +147,31 @@ void Player::SetStrength(int value)
 	strength = value;
 }
 
+bool Player::GetAlive()
+{
+	return alive;
+}
+
+bool Player::SetAlive(bool isAlive)
+{
+	alive = isAlive;
+	return isAlive;
+}
+
 void Player::TakeDamage(int value)
 {
 	currentHealth -= value;
+	PlayHurtSFX();
+}
+
+void Player::PlayJumpSFX()
+{
+	audio->PlaySFX("Audio/jump.wav", 0);
+}
+
+void Player::PlayHurtSFX()
+{
+	audio->PlaySFX("Audio/playerhit.wav", 0);
 }
 
 void Player::GetInput()
@@ -212,11 +234,6 @@ void Player::Die()
 	{
 		alive = false;
 	}
-}
-
-void Player::PlaySFX()
-{
-	audio->PlaySFX("Audio/jump.wav", 0);
 }
 
 void Player::Update()

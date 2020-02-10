@@ -1,6 +1,5 @@
 #include "TestLevel.h"
 
-
 TestLevel::TestLevel() :
 	Scene(new Texture("Background.png"))
 {}
@@ -113,6 +112,14 @@ void TestLevel::TestLevelAudio()
 void TestLevel::UpdateScene()
 {
 	chainPlatform1->UpdateChildren();
+
+	if (!player1->GetAlive())
+	{
+		if (mInputManager->KeyDown(SDL_SCANCODE_RETURN))
+		{
+			mSceneManager->ChangeScene(new TestLevel());
+		}
+	}
 }
 
 TestLevel::~TestLevel()

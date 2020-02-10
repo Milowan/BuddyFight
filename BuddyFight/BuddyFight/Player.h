@@ -68,9 +68,14 @@ public:
 	int GetStrength();
 	void SetStrength(int value);
 
+	bool GetAlive();
+	bool SetAlive(bool isAlive);
+
 	void TakeDamage(int value);
 
-	void PlaySFX();
+	void PlayJumpSFX();
+
+	void PlayHurtSFX();
 
 	void Update() override;
 };

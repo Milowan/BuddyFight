@@ -163,7 +163,6 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Spear.cpp" />
     <ClCompile Include="Sword.cpp" />
-    <ClCompile Include="WinScreen.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ProjectileWeapon.cpp" />
@@ -201,7 +200,6 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="Player.h" />
     <ClInclude Include="Spear.h" />
     <ClInclude Include="Sword.h" />
-    <ClInclude Include="WinScreen.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ProjectileWeapon.h" />
