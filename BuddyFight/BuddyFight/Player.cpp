@@ -227,7 +227,7 @@ void Player::Die()
 		alive = false;
 		Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
 		pool->AddEntity(dead);
-		Entity* restart = new Entity(new Texture("PRESS (some key here) TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
 		pool->AddEntity(restart);
 	}
 	if (this->GetPosition().y > Graphics::SCREEN_HEIGHT)
