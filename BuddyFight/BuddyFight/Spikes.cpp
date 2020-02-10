@@ -9,14 +9,17 @@ Spikes::Spikes(float x, float y) :
 Spikes::~Spikes()
 {}
 
-//void Spikes::HandleCollision(Entity * other)
-//{
-//	if (other == player)
-//	{
-//		player->TakeDamage(10);
-//		SetForwardVector(Vector2(forwardVector.x, -1));
-//		grounded = false;
-//		player->AddForce(Vector2(0, -15));
-//	}
-//}
+void Spikes::HandleCollision(Entity * other)
+{
+	Body* body;
+	Player* player;
+	if (other->GetMask() == BODY)
+	{
+		body = (Body*)other;
+		player = (Player*)body->GetParent();
+		player->TakeDamage(10);
+		player->ResetAcceleration();
+		player->AddForce(Vector2(0, -15));
+	}
+}
 

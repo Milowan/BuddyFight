@@ -65,7 +65,7 @@ Player::Player() :
 	alive = true;
 	hasWeapon = false;
 	isJumping = false;
-	maxSpeed = 60.0f;
+	maxSpeed = WALK_SPEED;
 
 	SetPosition(Graphics::BLOCK_WIDTH * 5, Graphics::BLOCK_HEIGHT * 3);
 

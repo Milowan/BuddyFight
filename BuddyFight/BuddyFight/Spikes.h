@@ -5,7 +5,6 @@ class Spikes : public Entity
 {
 	private:
 
-		//Player* player;
 
 	protected:
 
@@ -14,7 +13,7 @@ class Spikes : public Entity
 		Spikes(float x, float y);
 		~Spikes();
 
-		//void HandleCollision(Entity* other) override;
+		void HandleCollision(Entity* other) override;
 
 };
 
