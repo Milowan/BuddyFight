@@ -28,10 +28,7 @@ void Player::PickUp()
 {
 	if (!hasWeapon)
 	{
-		//get a pointer to the weapon on the ground in memory
-		//check if its position is close to the players
-		//groundWeapon.position = rFist.position but with a slight offset
-		//run pick up sfx
+		//if (rFist->GetColliding() && )
 	}
 	if (hasWeapon)
 	{
@@ -59,11 +56,13 @@ Player::Player() :
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
 
+	//skins
 	Texture* bodyS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
 	Texture* headS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
 	Texture* lFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
 	Texture* rFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
 
+	alive = true;
 	hasWeapon = false;
 	isJumping = false;
 	maxSpeed = 60.0f;
@@ -77,18 +76,18 @@ Player::Player() :
 
 	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
 	head->SetParent(this);
-	head->GetTexture()->SetWidth(20);
-	head->GetTexture()->SetHeight(20);
+	head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
+	head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
 
-	lFist = new Fist(lFistS, body->GetPosition().x - 95, body->GetPosition().y - 50);
+	lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
 	lFist->SetParent(this);
-	lFist->GetTexture()->SetWidth(15);
-	lFist->GetTexture()->SetHeight(15);
+	lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+	lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
 
-	rFist = new Fist(rFistS, body->GetPosition().x + 95, body->GetPosition().y - 50);
+	rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
 	rFist->SetParent(this);
-	rFist->GetTexture()->SetWidth(15);
-	rFist->GetTexture()->SetHeight(15);
+	rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+	rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
 }
 
 Player::~Player()
@@ -105,8 +104,8 @@ Player::~Player()
 	delete body;
 	body = nullptr;
 
-	//delete weapon;
-	//weapon = nullptr;
+	delete weapon;
+	weapon = nullptr;
 
 	delete lFist;
 	lFist = nullptr;
@@ -153,17 +152,17 @@ void Player::GetInput()
 	}
 	if (input->KeyPressed(SDL_SCANCODE_A))
 	{
-		SetForwardVector(-V2RIGHT * 2);
-		AddForce(Vector2(-20, 0));
+		SetForwardVector(-V2RIGHT);
+		AddForce(Vector2(WALK_SPEED, 0));
 		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
-		SetForwardVector(V2RIGHT * 2);
-		AddForce(Vector2(20, 0));
+		SetForwardVector(V2RIGHT);
+		AddForce(Vector2(WALK_SPEED, 0));
 		ResetAcceleration();
 	}
-	if (input->KeyPressed(SDL_SCANCODE_N))
+	if (input->KeyPressed(SDL_SCANCODE_C))
 	{
 		Attack();
 	}
@@ -182,6 +181,23 @@ void Player::GetInput()
 	if (input->KeyReleased(SDL_SCANCODE_W))
 	{
 		SetForwardVector(V2ZERO);
+		acceleration = acceleration - timer->GetDeltaTime();
+	}
+}
+
+void Player::Die()
+{
+	if (this->GetPosition().x < 0 || this->GetPosition().x > Graphics::SCREEN_WIDTH)
+	{
+		alive = false;
+		Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
+		pool->AddEntity(dead);
+		Entity* restart = new Entity(new Texture("PRESS (some key here) TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+		pool->AddEntity(restart);
+	}
+	if (this->GetPosition().y > Graphics::SCREEN_HEIGHT)
+	{
+		alive = false;
 	}
 }
 
@@ -202,4 +218,6 @@ void Player::Update()
 	UpdatePhysics();
 
 	UpdateChildren();
+
+	Die();
 }
