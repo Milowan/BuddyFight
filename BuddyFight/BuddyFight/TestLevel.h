@@ -27,7 +27,7 @@ class TestLevel : public Scene
 		SceneManager* mSceneManager;
 
 		Player* player1;
-		//Player* player2;
+		Player* player2;
 
 		BasePlatform* basePlatform;
 

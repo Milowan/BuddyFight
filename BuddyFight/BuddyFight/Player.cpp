@@ -45,54 +45,93 @@ void Player::Jump()
 }
 
 
-Player::Player() :
+Player::Player(bool p1) :
 	PhysicsEntity(NULL)
 {
 	audio = AudioManager::GetInstance();
-	input = InputManager::GetInstance();
+	inputP1 = InputManager::GetInstance();
+	inputP2 = InputManager::GetInstance();
 	pool = EntityPool::GetInstance();
 	timer = Timer::GetInstance();
 
+	if (p1)
+	{
+		isP1 = true;
+
+		//skins
+		Texture* bodyS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+		Texture* headS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+		Texture* lFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+		Texture* rFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+
+		SetPosition(Graphics::BLOCK_WIDTH * 5, Graphics::BLOCK_HEIGHT * 3);
+
+		body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
+		body->SetParent(this);
+		body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
+		body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
+
+		head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
+		head->SetParent(this);
+		head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
+		head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
+
+		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		lFist->SetParent(this);
+		lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+		lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
+
+		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		rFist->SetParent(this);
+		rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+		rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
+	}
+	else
+	{
+		isP1 = false;
+
+		//skins
+		Texture* bodyS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
+		Texture* headS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
+		Texture* lFistS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
+		Texture* rFistS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
+
+		SetPosition(Graphics::BLOCK_WIDTH * 15, Graphics::BLOCK_HEIGHT * 3);
+
+		body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
+		body->SetParent(this);
+		body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
+		body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
+
+		head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
+		head->SetParent(this);
+		head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
+		head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
+
+		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		lFist->SetParent(this);
+		lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+		lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
+
+		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		rFist->SetParent(this);
+		rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
+		rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
+	}
+
 	SetHealth(MAX_HEALTH);
 	SetStrength(MAX_STRENGTH);
-
-	//skins
-	Texture* bodyS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* headS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* lFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* rFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
 
 	alive = true;
 	hasWeapon = false;
 	isJumping = false;
 	maxSpeed = WALK_SPEED;
-
-	SetPosition(Graphics::BLOCK_WIDTH * 5, Graphics::BLOCK_HEIGHT * 3);
-
-	body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
-	body->SetParent(this);
-	body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
-	body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
-
-	head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
-	head->SetParent(this);
-	head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
-	head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
-
-	lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
-	lFist->SetParent(this);
-	lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
-	lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
-
-	rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
-	rFist->SetParent(this);
-	rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
-	rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
 }
 
 Player::~Player()
 {
-	input = nullptr;
+	inputP1 = nullptr;
+	inputP2 = nullptr;
 
 	audio = nullptr;
 
@@ -164,6 +203,19 @@ void Player::TakeDamage(int value)
 	PlayHurtSFX();
 }
 
+InputManager* Player::GetP1P2Controls()
+{
+	if (isP1)
+	{
+		return inputP1;
+	}
+
+	else
+	{
+		return inputP2;
+	}
+}
+
 void Player::PlayJumpSFX()
 {
 	audio->PlaySFX("Audio/jump.wav", 0);
@@ -205,47 +257,96 @@ void Player::HandleCollision(Entity* other)
 
 void Player::GetInput()
 {
-	if (input->KeyDown(SDL_SCANCODE_W) && grounded)
+	if (isP1)
 	{
-		Jump();
+		if (inputP1->KeyDown(SDL_SCANCODE_W) && grounded)
+		{
+			Jump();
+		}
+		if (inputP1->KeyPressed(SDL_SCANCODE_S))
+		{
+			Duck();
+			ResetAcceleration();
+		}
+		if (inputP1->KeyPressed(SDL_SCANCODE_A))
+		{
+			SetForwardVector(-V2RIGHT * 2);
+			AddForce(Vector2(WALK_SPEED, 0));
+			ResetAcceleration();
+		}
+		if (inputP1->KeyPressed(SDL_SCANCODE_D))
+		{
+			SetForwardVector(V2RIGHT * 2);
+			AddForce(Vector2(WALK_SPEED, 0));
+			ResetAcceleration();
+		}
+		if (inputP1->KeyPressed(SDL_SCANCODE_C))
+		{
+			Attack();
+		}
+		if (inputP1->KeyReleased(SDL_SCANCODE_A))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP1->KeyReleased(SDL_SCANCODE_D))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP1->KeyReleased(SDL_SCANCODE_S))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP1->KeyReleased(SDL_SCANCODE_W))
+		{
+			SetForwardVector(V2ZERO);
+			acceleration = acceleration - timer->GetDeltaTime();
+		}
 	}
-	if (input->KeyPressed(SDL_SCANCODE_S))
+
+	else
 	{
-		Duck();
-		ResetAcceleration();
-	}
-	if (input->KeyPressed(SDL_SCANCODE_A))
-	{
-		SetForwardVector(-V2RIGHT * 2);
-		AddForce(Vector2(WALK_SPEED, 0));
-		ResetAcceleration();
-	}
-	if (input->KeyPressed(SDL_SCANCODE_D))
-	{
-		SetForwardVector(V2RIGHT * 2);
-		AddForce(Vector2(WALK_SPEED, 0));
-		ResetAcceleration();
-	}
-	if (input->KeyPressed(SDL_SCANCODE_C))
-	{
-		Attack();
-	}
-	if (input->KeyReleased(SDL_SCANCODE_A))
-	{
-		SetForwardVector(V2ZERO);
-	}
-	if (input->KeyReleased(SDL_SCANCODE_D))
-	{
-		SetForwardVector(V2ZERO);
-	}
-	if (input->KeyReleased(SDL_SCANCODE_S))
-	{
-		SetForwardVector(V2ZERO);
-	}
-	if (input->KeyReleased(SDL_SCANCODE_W))
-	{
-		SetForwardVector(V2ZERO);
-		acceleration = acceleration - timer->GetDeltaTime();
+		if (inputP2->KeyDown(SDL_SCANCODE_I) && grounded)
+		{
+			Jump();
+		}
+		if (inputP2->KeyPressed(SDL_SCANCODE_K))
+		{
+			Duck();
+			ResetAcceleration();
+		}
+		if (inputP2->KeyPressed(SDL_SCANCODE_J))
+		{
+			SetForwardVector(-V2RIGHT * 2);
+			AddForce(Vector2(WALK_SPEED, 0));
+			ResetAcceleration();
+		}
+		if (inputP2->KeyPressed(SDL_SCANCODE_L))
+		{
+			SetForwardVector(V2RIGHT * 2);
+			AddForce(Vector2(WALK_SPEED, 0));
+			ResetAcceleration();
+		}
+		if (inputP2->KeyPressed(SDL_SCANCODE_N))
+		{
+			Attack();
+		}
+		if (inputP2->KeyReleased(SDL_SCANCODE_J))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP2->KeyReleased(SDL_SCANCODE_L))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP2->KeyReleased(SDL_SCANCODE_K))
+		{
+			SetForwardVector(V2ZERO);
+		}
+		if (inputP2->KeyReleased(SDL_SCANCODE_I))
+		{
+			SetForwardVector(V2ZERO);
+			acceleration = acceleration - timer->GetDeltaTime();
+		}
 	}
 }
 
@@ -259,6 +360,14 @@ void Player::Die()
 		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
 		pool->AddEntity(restart);
 	}
+	else
+	{
+		Entity* dead = new Entity(new Texture("PLAYER 1 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
+		pool->AddEntity(dead);
+		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+		pool->AddEntity(restart);
+	}
+
 	if (this->GetPosition().y > Graphics::SCREEN_HEIGHT)
 	{
 		alive = false;
@@ -268,10 +377,21 @@ void Player::Die()
 	{
 		delete this;
 		pool->RemoveEntity(this);
-		Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
-		pool->AddEntity(dead);
-		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
-		pool->AddEntity(restart);
+		if (this->GetP1P2Controls() == inputP1)
+		{
+			Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
+			pool->AddEntity(dead);
+			Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+			pool->AddEntity(restart);
+		}
+
+		else
+		{
+			Entity* dead = new Entity(new Texture("PLAYER 1 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
+			pool->AddEntity(dead);
+			Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
+			pool->AddEntity(restart);
+		}
 	}
 }
 

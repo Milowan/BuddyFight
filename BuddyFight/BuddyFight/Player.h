@@ -23,7 +23,8 @@ private:
 
 	float jumpTimer;
 
-	InputManager* input;
+	InputManager* inputP1;
+	InputManager* inputP2;
 	AudioManager* audio;
 	EntityPool* pool;
 	Timer* timer;
@@ -43,6 +44,7 @@ private:
 
 protected:
 
+	bool isP1;
 	bool isJumping;
 	bool hasWeapon;
 
@@ -60,7 +62,7 @@ protected:
 	void Die();
 
 public:
-	Player();
+	Player(bool p1);
 	~Player();
 
 	int GetHealth();
@@ -75,6 +77,8 @@ public:
 	bool SetAlive(bool isAlive);
 
 	void TakeDamage(int value);
+
+	InputManager* GetP1P2Controls();
 
 	void PlayJumpSFX();
 
