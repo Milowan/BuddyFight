@@ -58,6 +58,8 @@ void TestLevel::InitializeScene()
 	crate12 = new Crate(19 * Graphics::BLOCK_WIDTH, 12 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(crate12);
 
+	//Spikes are causing an error in the vector class i cant figure out, hence why i just commented them out for now. 
+
 	//spike1 = new Spikes(1 * Graphics::BLOCK_WIDTH, 20 * Graphics::BLOCK_HEIGHT);
 	//pool->AddEntity(spike1);
 	//spike2 = new Spikes(2 * Graphics::BLOCK_WIDTH, 20 * Graphics::BLOCK_HEIGHT);

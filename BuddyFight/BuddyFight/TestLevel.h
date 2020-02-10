@@ -10,7 +10,7 @@
 #include "HingePlatformWest.h"
 #include "BasePlatform.h"
 #include "Crate.h"
-//#include "Spikes.h"
+#include "Spikes.h"
 //Weapon includes
 #include "Pistol.h"
 #include "Sword.h"
