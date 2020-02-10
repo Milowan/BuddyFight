@@ -14,7 +14,9 @@ class HingePlatformEast : public Platform
 		float currentRot;
 		bool returning = false;
 
-		Entity* mHingePlatformBase;
+		Entity* mHingePlatformBase1;
+		Entity* mHingePlatformBase2;
+		Entity* mHingePlatformBase3;
 
 	protected:
 
