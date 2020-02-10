@@ -229,6 +229,11 @@ bool Entity::IsQueued()
 
 bool Entity::CheckCollision(Entity* other)
 {
+	for (int i = 0; i < other->children.size(); ++i)
+	{
+		if (CheckCollision(other->children[i]))
+			HandleCollision(other->children[i]);
+	}
 	colliding = false;
 	if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
 	{
