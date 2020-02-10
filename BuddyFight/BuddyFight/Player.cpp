@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "MathHelper.h"
+
 
 void Player::Attack()
 {
@@ -38,7 +38,7 @@ void Player::PickUp()
 
 void Player::Jump()
 {
-	SetForwardVector(Vector2(forwardVector.x,-1));
+	SetForwardVector(Vector2(forwardVector.x * 0.5f, -1));
 	grounded = false;
 	AddForce(Vector2(0, -15));
 	PlaySFX();
@@ -57,10 +57,10 @@ Player::Player() :
 	SetStrength(MAX_STRENGTH);
 
 	//skins
-	Texture* bodyS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* headS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* lFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
-	Texture* rFistS = new Texture("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* bodyS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* headS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* lFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
+	Texture* rFistS = SetSkin("PlayerSpriteSheet.png", 0, 0, 256, 256);
 
 	alive = true;
 	hasWeapon = false;
@@ -98,6 +98,8 @@ Player::~Player()
 
 	pool = nullptr;
 
+	timer = nullptr;
+
 	delete head;
 	head = nullptr;
 
@@ -122,6 +124,17 @@ int Player::GetHealth()
 void Player::SetHealth(int value)
 {
 	currentHealth = value;
+}
+
+Texture* Player::SetSkin(std::string filename, float x, float y, float w, float h)
+{
+	skin = new Texture(filename, SkinX(x), y, w, h);
+	return skin;
+}
+
+int Player::SkinX(int x)
+{
+	return x;
 }
 
 int Player::GetStrength()
@@ -152,13 +165,13 @@ void Player::GetInput()
 	}
 	if (input->KeyPressed(SDL_SCANCODE_A))
 	{
-		SetForwardVector(-V2RIGHT);
+		SetForwardVector(-V2RIGHT * 2);
 		AddForce(Vector2(WALK_SPEED, 0));
 		ResetAcceleration();
 	}
 	if (input->KeyPressed(SDL_SCANCODE_D))
 	{
-		SetForwardVector(V2RIGHT);
+		SetForwardVector(V2RIGHT * 2);
 		AddForce(Vector2(WALK_SPEED, 0));
 		ResetAcceleration();
 	}

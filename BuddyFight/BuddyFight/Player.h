@@ -15,12 +15,6 @@ class Player :
 public PhysicsEntity {
 
 private:
-	static const int MAX_HEALTH = 100;
-	static const int MAX_STRENGTH = 10;
-	static const int MAX_PUNCH_DISTANCE = 50;
-	static const int MAX_JUMP_HEIGHT = 1000;
-	static const int WALK_SPEED = 15;
-	
 	int currentHealth;
 	int strength;
 
@@ -31,6 +25,8 @@ private:
 	EntityPool* pool;
 	Timer* timer;
 
+	Texture* skin;
+
 	bool alive = true;
 
 	Head* head;
@@ -40,6 +36,19 @@ private:
 
 	Weapon* weapon;
 
+	Texture* SetSkin(std::string filename, float x, float y, float w, float h);
+
+protected:
+
+	bool isJumping;
+	bool hasWeapon;
+
+	static const int MAX_HEALTH = 100;
+	static const int MAX_STRENGTH = 10;
+	static const int MAX_PUNCH_DISTANCE = 50;
+	static const int MAX_JUMP_HEIGHT = 1000;
+	static const int WALK_SPEED = 35;
+
 	void Attack();
 	void Duck();
 	void PickUp();
@@ -47,18 +56,14 @@ private:
 	void GetInput();
 	void Die();
 
-
-protected:
-
-	bool isJumping;
-	bool hasWeapon;
-
 public:
 	Player();
 	~Player();
 
 	int GetHealth();
 	void SetHealth(int value);
+
+	int SkinX(int x);
 
 	int GetStrength();
 	void SetStrength(int value);
@@ -68,5 +73,4 @@ public:
 	void PlaySFX();
 
 	void Update() override;
-
 };
