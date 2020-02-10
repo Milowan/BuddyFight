@@ -11,10 +11,10 @@ HingePlatformEast::HingePlatformEast(float x, float y, float speed) :
     mHingePlatformBase1->SetPosition(GetPosition().x + Graphics::BLOCK_WIDTH +(mHingePlatformBase1->GetTexture()->GetWidth() / 2), mHingePlatformBase1->GetPosition().y);
 	mHingePlatformBase1->SetParent(this);
     mHingePlatformBase2 = new Platform(new Texture("TestLevelSpriteSheet.png", 192, 64, 64, 64), (GetPosition().x), GetPosition().y);
-    mHingePlatformBase2->SetPosition(GetPosition().x + (Graphics::BLOCK_WIDTH + (mHingePlatformBase2->GetTexture()->GetWidth() / 2) * 3), mHingePlatformBase2->GetPosition().y);
+    mHingePlatformBase2->SetPosition(GetPosition().x + (Graphics::BLOCK_WIDTH + (mHingePlatformBase2->GetTexture()->GetWidth() / 2) * 2.8), mHingePlatformBase2->GetPosition().y);
     mHingePlatformBase2->SetParent(this);
     mHingePlatformBase3 = new Platform(new Texture("TestLevelSpriteSheet.png", 192, 64, 64, 64), (GetPosition().x), GetPosition().y);
-    mHingePlatformBase3->SetPosition(GetPosition().x + (Graphics::BLOCK_WIDTH + (mHingePlatformBase3->GetTexture()->GetWidth() / 2) * 5), mHingePlatformBase3->GetPosition().y);
+    mHingePlatformBase3->SetPosition(GetPosition().x + (Graphics::BLOCK_WIDTH + (mHingePlatformBase3->GetTexture()->GetWidth() / 2) * 4.7), mHingePlatformBase3->GetPosition().y);
     mHingePlatformBase3->SetParent(this);
     rotSpeed = speed;
 }
