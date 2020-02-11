@@ -1,7 +1,8 @@
 #include "TestLevel.h"
 
 TestLevel::TestLevel() :
-	Scene(new Texture("Background.png"))
+	Scene(new Texture("Background.png")),
+	uiHud(NULL)
 {}
 
 
@@ -16,10 +17,7 @@ void TestLevel::InitializeScene()
 	pool = EntityPool::GetInstance();
 	bPool = BulletPool::GetInstance();
 
-	stringstream ss;
-	ss << "Time: " << currentTime;
-	clock = new Entity(new Texture(ss.str(), "emulogic.TTF", 18, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.1f);
-	pool->AddEntity(clock);
+	uiHud = new UIHud(2000);
 
 	player1 = new Player(true);
 	player1->SetPosition(player1->GetPosition());
@@ -133,18 +131,8 @@ void TestLevel::UpdateScene()
 			mSceneManager->ChangeScene(new TestLevel());
 		}
 	}
-	CountdownTimer();
 }
 
-int TestLevel::CountdownTimer()
-{
-	for (int i = 0; i < maxTime; i++)
-	{
-		i++;
-		currentTime--;
-	}
-	return currentTime;
-}
 
 TestLevel::~TestLevel()
 {
@@ -157,20 +145,17 @@ TestLevel::~TestLevel()
 	delete player1;
 	player1 = nullptr;
 
-	delete clock;
-	clock = nullptr;
+	delete uiHud;
+	uiHud = nullptr;
 
 	delete chainPlatform1;
 	chainPlatform1 = nullptr;
 	delete chainPlatform2;
 	chainPlatform2 = nullptr;
-
 	delete basePlatform;
 	basePlatform = nullptr;
-
 	delete hingePlatform1;
 	hingePlatform1 = nullptr;
-
 	delete hingePlatform2;
 	hingePlatform2 = nullptr;
 

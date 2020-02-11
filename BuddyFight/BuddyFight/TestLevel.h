@@ -17,6 +17,7 @@
 #include "Spear.h"
 #include <string>;
 #include <sstream>;
+#include "UIHud.h";
 
 
 class TestLevel : public Scene
@@ -52,7 +53,6 @@ class TestLevel : public Scene
 		Crate* crate11;
 		Crate* crate12;
 
-
 		//Spikes* spike1;
 		//Spikes* spike2;
 		//Spikes* spike3;
@@ -71,17 +71,15 @@ class TestLevel : public Scene
 		//Spikes* spike16;
 		//Spikes* spike17;
 
+		UIHud* uiHud;
+		TimerEntity* mTimerEntity;
+
 		// Weapons
 		EntityPool* pool;
 		BulletPool* bPool;
 		Pistol* mPistol;
 		Sword* mSword;
 		Spear* mSpear;
-
-		//variables
-		int timeOut = 0;
-		int currentTime = 2000;
-		int maxTime = 2000;
 	protected:
 
 	public:
@@ -89,7 +87,6 @@ class TestLevel : public Scene
 		void InitializeScene() override;
 		void TestLevelAudio();
 		void UpdateScene() override;
-		int CountdownTimer();
 
 		TestLevel();
 		~TestLevel();
