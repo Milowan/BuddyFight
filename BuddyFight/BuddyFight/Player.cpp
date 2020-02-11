@@ -96,7 +96,7 @@ Player::Player(bool p1) :
 		Texture* lFistS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
 		Texture* rFistS = SetSkin("PlayerSpriteSheet.png", 258, 0, 256, 256);
 
-		SetPosition(Graphics::BLOCK_WIDTH * 15, Graphics::BLOCK_HEIGHT * 3);
+		SetPosition(Graphics::BLOCK_WIDTH * 35, Graphics::BLOCK_HEIGHT * 3);
 
 		body = new Body(bodyS, this->GetPosition().x, this->GetPosition().y);
 		body->SetParent(this);
@@ -108,12 +108,12 @@ Player::Player(bool p1) :
 		head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
 		head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
 
-		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.1f, body->GetPosition().y - 50);
 		lFist->SetParent(this);
 		lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
 		lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
 
-		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.1f, body->GetPosition().y - 50);
 		rFist->SetParent(this);
 		rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
 		rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
@@ -352,7 +352,7 @@ void Player::GetInput()
 
 void Player::Die()
 {
-	if (this->GetPosition().x < 0 || this->GetPosition().x > Graphics::SCREEN_WIDTH)
+	if (this->GetPosition().x < 0 || this->GetPosition().x > Graphics::SCREEN_WIDTH && isP1 == true)
 	{
 		alive = false;
 		Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
@@ -360,7 +360,7 @@ void Player::Die()
 		Entity* restart = new Entity(new Texture("PRESS ENTER TO RESTART", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.8f);
 		pool->AddEntity(restart);
 	}
-	else
+	else if (this->GetPosition().x < 0 || this->GetPosition().x > Graphics::SCREEN_WIDTH && isP1 == false)
 	{
 		Entity* dead = new Entity(new Texture("PLAYER 1 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
 		pool->AddEntity(dead);
