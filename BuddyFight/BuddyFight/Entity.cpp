@@ -15,7 +15,7 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	mask(NONE),
 	shape(SHAPELESS),
 	overlapVector(V2ZERO),
-	forwardVector(V2UP),
+	forwardVector(V2ZERO),
 	parent(NULL),
 	queued(false),
 	grounded(false)

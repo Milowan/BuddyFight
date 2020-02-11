@@ -70,7 +70,7 @@ void Weapon::HandleCollision(Entity* other)
 		}
 		if (overlapVector.y > 0)
 		{
-			SetPosition(GetPosition() - overlapVector);
+			SetPosition(GetPosition() + overlapVector);
 			ResetAcceleration();
 		}
 	}
