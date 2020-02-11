@@ -12,8 +12,14 @@ void TestLevel::InitializeScene()
 	mInputManager = InputManager::GetInstance();
 	mAudioManager = AudioManager::GetInstance();
 	mSceneManager = SceneManager::GetInstance();
+
 	pool = EntityPool::GetInstance();
 	bPool = BulletPool::GetInstance();
+
+	stringstream ss;
+	ss << "Time: " << currentTime;
+	clock = new Entity(new Texture(ss.str(), "emulogic.TTF", 18, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.1f);
+	pool->AddEntity(clock);
 
 	player1 = new Player(true);
 	player1->SetPosition(player1->GetPosition());
@@ -127,6 +133,17 @@ void TestLevel::UpdateScene()
 			mSceneManager->ChangeScene(new TestLevel());
 		}
 	}
+	CountdownTimer();
+}
+
+int TestLevel::CountdownTimer()
+{
+	for (int i = 0; i < maxTime; i++)
+	{
+		i++;
+		currentTime--;
+	}
+	return currentTime;
 }
 
 TestLevel::~TestLevel()
@@ -139,6 +156,9 @@ TestLevel::~TestLevel()
 
 	delete player1;
 	player1 = nullptr;
+
+	delete clock;
+	clock = nullptr;
 
 	delete chainPlatform1;
 	chainPlatform1 = nullptr;

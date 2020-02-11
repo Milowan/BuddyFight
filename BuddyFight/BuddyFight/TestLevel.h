@@ -15,7 +15,8 @@
 #include "Pistol.h"
 #include "Sword.h"
 #include "Spear.h"
-
+#include <string>;
+#include <sstream>;
 
 
 class TestLevel : public Scene
@@ -26,14 +27,15 @@ class TestLevel : public Scene
 		AudioManager* mAudioManager;
 		SceneManager* mSceneManager;
 
+		//Entities
 		Player* player1;
 		Player* player2;
 
-		BasePlatform* basePlatform;
+		Entity* clock;
 
+		BasePlatform* basePlatform;
 		ChainPlatform* chainPlatform1;
 		ChainPlatform* chainPlatform2;
-
 		HingePlatformEast* hingePlatform1;
 		HingePlatformWest* hingePlatform2;
 
@@ -76,6 +78,10 @@ class TestLevel : public Scene
 		Sword* mSword;
 		Spear* mSpear;
 
+		//variables
+		int timeOut = 0;
+		int currentTime = 2000;
+		int maxTime = 2000;
 	protected:
 
 	public:
@@ -83,6 +89,7 @@ class TestLevel : public Scene
 		void InitializeScene() override;
 		void TestLevelAudio();
 		void UpdateScene() override;
+		int CountdownTimer();
 
 		TestLevel();
 		~TestLevel();
