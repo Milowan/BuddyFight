@@ -5,6 +5,7 @@ Weapon::Weapon(Texture* texture, float x, float y)
 	: PhysicsEntity(texture, x, y)
 {
 	mTimer = Timer::GetInstance();
+	mask = WEAPON;
 	maxSpeed = 9;
 }
 
@@ -71,7 +72,6 @@ void Weapon::HandleCollision(Entity* other)
 		{
 			SetPosition(GetPosition() - overlapVector);
 			ResetAcceleration();
-			grounded = true;
 		}
 	}
 }
