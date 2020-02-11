@@ -21,10 +21,10 @@ void StartScreen::InitializeScene()
 	start = new Entity(new Texture("PRESS ENTER TO START", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
 	pool->AddEntity(start);
 
-	Entity* entity = new Entity(new Texture("WASD to move", "emulogic.TTF", 14, { 255, 255, 255 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.78f);
+	Entity* entity = new Entity(new Texture("Player 1: WASD to move", "emulogic.TTF", 14, { 255, 255, 255 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.78f);
 	pool->AddEntity(entity);
 
-	entity = new Entity(new Texture("Insert Other controls here...", "emulogic.TTF", 14, { 255, 255, 255 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.83f);
+	entity = new Entity(new Texture("Player 2: IJKL to move", "emulogic.TTF", 14, { 255, 255, 255 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.83f);
 	pool->AddEntity(entity);
 
 	StartScreenAudio();
