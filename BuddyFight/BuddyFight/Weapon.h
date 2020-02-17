@@ -34,6 +34,7 @@ protected:
 	bool forward = false;
 	void Update();
 
+	int GetDamage();
 	void HandleCollision(Entity* other) override;
 
 };
