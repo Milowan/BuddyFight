@@ -145,6 +145,9 @@ TestLevel::~TestLevel()
 	delete player1;
 	player1 = nullptr;
 
+	delete player2;
+	player2 = nullptr;
+
 	delete uiHud;
 	uiHud = nullptr;
 
