@@ -58,6 +58,11 @@ void Weapon::Update()
 	}
 }
 
+int Weapon::GetDamage()
+{
+	return mDamage;
+}
+
 void Weapon::HandleCollision(Entity* other)
 {
 	if (other->GetMask() == CollisionMask::GROUND)
