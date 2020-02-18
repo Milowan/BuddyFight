@@ -27,12 +27,25 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	delete currentScene;
+	for (int i = 0; i < scenePool.size(); ++i)
+	{
+		delete scenePool[i];
+	}
 }
 
 Scene* SceneManager::GetCurrentScene()
 {
 	return currentScene;
+}
+
+Scene* SceneManager::GetScene(string id)
+{
+	Scene* retVal = NULL;
+	for (int i = 0; i < scenePool.size(); ++i)
+	{
+		if (scenePool[i]->GetID() == id)
+			retVal = scenePool[i];
+	}
 }
 
 void SceneManager::AddScene(Scene* scene)
@@ -44,7 +57,6 @@ void SceneManager::AddScene(Scene* scene)
 void SceneManager::ChangeScene(Scene* scene)
 {
 	pool->FlagReset();
-	delete currentScene;
 	currentScene = scene;
 	pool->EmptyPool();
 	scene->InitializeScene();

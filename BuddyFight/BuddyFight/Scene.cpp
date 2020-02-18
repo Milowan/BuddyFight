@@ -18,3 +18,8 @@ void Scene::Render()
 		background->Render(Vector2(Graphics::SCREEN_WIDTH / 2, Graphics::SCREEN_HEIGHT / 2), V2ONE);
 	}
 }
+
+string Scene::GetID()
+{
+	return id;
+}
