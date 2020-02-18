@@ -239,9 +239,9 @@ bool Entity::CheckCollision(Entity* other)
 
 		for (int j = 0; j < other->GetChildren().size(); ++j)
 		{
-			if (children[i]->CheckCollision(other))
+			if (children[j]->CheckCollision(other))
 			{
-				children[i]->HandleCollision(other);
+				children[j]->HandleCollision(other);
 			}
 			if (children[j]->CheckCollision(other->children[i]))
 			{
