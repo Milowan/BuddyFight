@@ -227,12 +227,27 @@ bool Entity::IsQueued()
 	return queued;
 }
 
+// Relocated the collision checks with the children changing from a 2O operation to an O operation
+
 bool Entity::CheckCollision(Entity* other)
 {
 	for (int i = 0; i < other->children.size(); ++i)
 	{
 		if (CheckCollision(other->children[i]))
 			HandleCollision(other->children[i]);
+
+
+		for (int j = 0; j < other->GetChildren().size(); ++j)
+		{
+			if (children[i]->CheckCollision(other))
+			{
+				children[i]->HandleCollision(other);
+			}
+			if (children[j]->CheckCollision(other->children[i]))
+			{
+				children[j]->HandleCollision(other->children[i]);
+			}
+		}
 	}
 	colliding = false;
 	if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
@@ -284,22 +299,6 @@ bool Entity::CheckCollision(Entity* other)
 			aRight >= bLeft)
 		{
 			colliding = true;
-		}
-	}
-
-	for (int i = 0; i < children.size(); ++i)
-	{
-		if (children[i]->CheckCollision(other))
-		{
-			children[i]->HandleCollision(other);
-		}
-
-		for (int j = 0; j < other->GetChildren().size(); ++j)
-		{
-			if (children[i]->CheckCollision(other->children[j]))
-			{
-				children[i]->HandleCollision(other->children[j]);
-			}
 		}
 	}
 
