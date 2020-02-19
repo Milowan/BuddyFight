@@ -24,7 +24,11 @@ SceneManager::SceneManager()
 {
 	pool = EntityPool::GetInstance();
 }
+/* Steven
+Adding for loops over a direct access variable which is O(1) the loops you added are O(n).
 
+Not an optimization.
+*/
 SceneManager::~SceneManager()
 {
 	for (int i = 0; i < scenePool.size(); ++i)

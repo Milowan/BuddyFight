@@ -227,6 +227,18 @@ bool Entity::IsQueued()
 	return queued;
 }
 
+/* Steven 
+please give a proper Big O Statement.
+
+Here I think adding in quick distance check would be optimal a simple sphere check would do - basically if its too far away you're not going to collide with it. 
+This will allow you to avoid doing unnecessary child collision checks in your loop. 
+
+Another thing would be to flag your entities and only update the ones who have moved.
+
+These two changes don't really correlate to our module in regards to data structures and algorithms but would improve
+your performance especially if we scaled the game to 1 million entities which is a small amount in large games.
+
+*/
 // Relocated the collision checks with the children changing from a 2O operation to an O operation
 
 bool Entity::CheckCollision(Entity* other)

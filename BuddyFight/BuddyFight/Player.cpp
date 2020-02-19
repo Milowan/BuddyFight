@@ -233,7 +233,9 @@ void Player::HandleCollision(Entity* other)
 	//otherwise take damage for getting touched by a weapon
 	if (other->GetMask() == WEAPON && hasWeapon == true)
 	{
-		//O(n)
+		//O(n) 
+		/* Steven
+		Jarrett, Please describe what O(n) is below. Also why this getter is not public*/
 		TakeDamage(dynamic_cast<Weapon*>(other)->GetDamage()); //only works if get damage is public
 	}
 

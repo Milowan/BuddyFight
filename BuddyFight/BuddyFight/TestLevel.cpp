@@ -18,7 +18,13 @@ void TestLevel::InitializeScene()
 	bPool = BulletPool::GetInstance();
 
 	uiHud = new UIHud(2000);
+	/* Steven
 
+	What if we wanted to convert this game to be online or port it over to the switch for 8 player co-op? 
+	say players can easily join or quit mid combat. lets store our players in a linked list just in case our smart producers decide
+	to make this game a battle royal with 100 players.
+	
+	*/
 	player1 = new Player(true);
 	player1->SetPosition(player1->GetPosition());
 	player1->SetScale(Vector2(0.25, 0.25));
