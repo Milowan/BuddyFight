@@ -15,11 +15,25 @@ TimerEntity::TimerEntity(int time, float x, float y) :
 
 int TimerEntity::CountdownTimer()
 {
-	currentTime--;
+	if (currentTime > 0)
+	{
+		currentTime--;
+	}
+	if (texture != NULL)
+	{
+		delete texture;
+	}
+	stringstream ss;
+	ss << "Time: " << currentTime;
+	texture = new Texture(ss.str(), "emulogic.TTF", 18, { 255, 255, 255 });
 	return currentTime;
 }
 
 void TimerEntity::Update()
 {
 	CountdownTimer();
+	if (currentTime <= 0)
+	{
+		//player with most health declared winner
+	}
 }
