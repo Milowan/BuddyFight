@@ -19,4 +19,8 @@ void Body::HandleCollision(Entity* other)
 		if (GetOverlap().y < 0)
 			parent->SetGrounded(true);
 	}
+	if (other->GetMask() == WEAPON || other->GetMask() == FIST)
+	{
+		parent->HandleCollision(other);
+	}
 }
