@@ -24,18 +24,6 @@ void Player::Duck()
 	SetForwardVector(Vector2(0, 1));
 }
 
-void Player::PickUp()
-{
-	if (!hasWeapon)
-	{
-		//if (rFist->GetColliding() && )
-	}
-	if (hasWeapon)
-	{
-		return;
-	}
-}
-
 void Player::Jump()
 {
 	SetForwardVector(Vector2(forwardVector.x * 0.5f, -1));
@@ -234,17 +222,19 @@ void Player::HandleCollision(Entity* other)
 	}
 
 	//if player has no weapon and one touches them,
-	if (other->GetMask() == WEAPON && !hasWeapon)
+	if (hasWeapon == false&&other->GetMask() == WEAPON && weapon == nullptr)
 	{
 		//pick it up
-		other->SetPosition(rFist->GetPosition());
+		hasWeapon = true;
 		other->SetParent(rFist);
+		other->SetPosition(rFist->GetPosition());
+
 	}
 	//otherwise take damage for getting touched by a weapon
-	if (other->GetMask() == WEAPON && hasWeapon)
+	if (other->GetMask() == WEAPON && hasWeapon == true)
 	{
 		//O(n)
-		//TakeDamage(dynamic_cast<Weapon*>(other)->GetDamage()); //only works if get damage is public
+		TakeDamage(dynamic_cast<Weapon*>(other)->GetDamage()); //only works if get damage is public
 	}
 
 }
