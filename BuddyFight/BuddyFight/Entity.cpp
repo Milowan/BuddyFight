@@ -231,21 +231,23 @@ bool Entity::IsQueued()
 
 bool Entity::CheckCollision(Entity* other)
 {
-	for (int i = 0; i < other->children.size(); ++i)
+	for (int i = 0; i < children.size(); ++i)
 	{
-		if (CheckCollision(other->children[i]))
-			HandleCollision(other->children[i]);
-
-
-		for (int j = 0; j < children.size(); ++j)
+		if (children[i]->CheckCollision(other))
 		{
-			if (children[j]->CheckCollision(other))
+			children[i]->HandleCollision(other);
+		}
+
+		for (int j = 0; j < other->children.size(); ++j)
+		{
+			if (i == 0)
 			{
-				children[j]->HandleCollision(other);
+				if (CheckCollision(other->children[j]))
+					HandleCollision(other->children[j]);
 			}
-			if (children[j]->CheckCollision(other->children[i]))
+			if (children[i]->CheckCollision(other->children[j]))
 			{
-				children[j]->HandleCollision(other->children[i]);
+				children[i]->HandleCollision(other->children[j]);
 			}
 		}
 	}

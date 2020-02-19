@@ -46,6 +46,7 @@ Scene* SceneManager::GetScene(string id)
 		if (scenePool[i]->GetID() == id)
 			retVal = scenePool[i];
 	}
+	return retVal;
 }
 
 void SceneManager::AddScene(Scene* scene)

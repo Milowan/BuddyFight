@@ -230,7 +230,7 @@ void Player::HandleCollision(Entity* other)
 {
 	if (other->GetMask() == FIST)
 	{
-		TakeDamage(dynamic_cast<Fist*>(other)->GetDamage());
+		TakeDamage(((Fist*)other)->GetDamage());
 	}
 
 	//if player has no weapon and one touches them,
