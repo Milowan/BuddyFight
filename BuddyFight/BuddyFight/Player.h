@@ -12,8 +12,6 @@
 #include "Spear.h"
 #include "Bullet.h"
 
-
-
 class Player :
 public PhysicsEntity {
 
@@ -37,6 +35,9 @@ private:
 	Body* body;
 	Fist* lFist;
 	Fist* rFist;
+
+	const int armMag = 50;
+	const int neckMag = 120;
 
 	Weapon* weapon;
 

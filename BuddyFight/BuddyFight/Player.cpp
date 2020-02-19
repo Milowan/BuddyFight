@@ -71,17 +71,17 @@ Player::Player(bool p1) :
 		body->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH);
 		body->GetTexture()->SetHeight(Graphics::BLOCK_HEIGHT);
 
-		head = new Head(headS, body->GetPosition().x, body->GetPosition().y - 120);
+		head = new Head(headS, body->GetPosition().x, body->GetPosition().y - neckMag);
 		head->SetParent(this);
 		head->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.75);
 		head->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.75);
 
-		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		lFist = new Fist(lFistS, body->GetPosition().x - body->GetPosition().x * 0.7f, body->GetPosition().y - armMag);
 		lFist->SetParent(this);
 		lFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
 		lFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
 
-		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - 50);
+		rFist = new Fist(rFistS, body->GetPosition().x + body->GetPosition().x * 0.7f, body->GetPosition().y - armMag);
 		rFist->SetParent(this);
 		rFist->GetTexture()->SetWidth(Graphics::BLOCK_WIDTH * 0.5);
 		rFist->GetTexture()->SetHeight(Graphics::BLOCK_WIDTH * 0.5);
@@ -228,31 +228,23 @@ void Player::PlayHurtSFX()
 
 void Player::HandleCollision(Entity* other)
 {
-	if (weapon = dynamic_cast<Weapon*>(other))
+	if (other == dynamic_cast<Fist*>(other))
 	{
+		TakeDamage(dynamic_cast<Fist*>(other)->GetDamage());
+	}
+	//if player has no weapon and one touches them,
+	if (other == dynamic_cast<Weapon*>(other) && !hasWeapon)
+	{
+		//pick it up
 		other->SetPosition(rFist->GetPosition());
 		other->SetParent(rFist);
 	}
-
-	if (other == dynamic_cast<Fist*>(other))
+	//otherwise take damage for getting touched by a weapon
+	if (hasWeapon)
 	{
-		TakeDamage(10);
+		//TakeDamage(dynamic_cast<Weapon*>(other)->GetDamage()); //only works if get damage is public
 	}
 
-	if (other == dynamic_cast<Sword*>(other))
-	{
-		TakeDamage(20);
-	}
-
-	if (other == dynamic_cast<Spear*>(other))
-	{
-		TakeDamage(15);
-	}
-
-	if (other == dynamic_cast<Bullet*>(other))
-	{
-		TakeDamage(25);
-	}
 }
 
 void Player::GetInput()
@@ -375,9 +367,8 @@ void Player::Die()
 
 	if (currentHealth <= 0)
 	{
-		delete this;
 		pool->RemoveEntity(this);
-		if (this->GetP1P2Controls() == inputP1)
+		if (isP1)
 		{
 			Entity* dead = new Entity(new Texture("PLAYER 2 WINS", "emulogic.TTF", 32, { 230, 230, 230 }), Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
 			pool->AddEntity(dead);
