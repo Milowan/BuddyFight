@@ -11,6 +11,7 @@ class Fist :
 private:
 
 	bool punching;
+	int damage;
 
 public:
 
@@ -18,6 +19,6 @@ public:
 
 	void SetPunching(bool isPunching);
 	bool GetPunching();
-
+	int GetDamage();
 };
 

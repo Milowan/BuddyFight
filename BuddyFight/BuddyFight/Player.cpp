@@ -228,20 +228,22 @@ void Player::PlayHurtSFX()
 
 void Player::HandleCollision(Entity* other)
 {
-	if (other == dynamic_cast<Fist*>(other))
+	if (other->GetMask() == FIST)
 	{
 		TakeDamage(dynamic_cast<Fist*>(other)->GetDamage());
 	}
+
 	//if player has no weapon and one touches them,
-	if (other == dynamic_cast<Weapon*>(other) && !hasWeapon)
+	if (other->GetMask() == WEAPON && !hasWeapon)
 	{
 		//pick it up
 		other->SetPosition(rFist->GetPosition());
 		other->SetParent(rFist);
 	}
 	//otherwise take damage for getting touched by a weapon
-	if (hasWeapon)
+	if (other->GetMask() == WEAPON && hasWeapon)
 	{
+		//O(n)
 		//TakeDamage(dynamic_cast<Weapon*>(other)->GetDamage()); //only works if get damage is public
 	}
 

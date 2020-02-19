@@ -21,3 +21,9 @@ bool Fist::GetPunching()
 {
 	return punching;
 }
+
+int Fist::GetDamage()
+{
+	damage = 10;
+	return damage;
+}
