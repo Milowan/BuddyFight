@@ -15,6 +15,8 @@ public:
 	Weapon(Texture* sprite, float x, float y);
 	~Weapon();
 
+	int GetDamage();
+
 protected:
 
 	Timer* mTimer;
@@ -34,7 +36,7 @@ protected:
 	bool forward = false;
 	void Update();
 
-	int GetDamage();
+
 	void HandleCollision(Entity* other) override;
 
 };
