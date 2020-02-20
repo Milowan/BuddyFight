@@ -25,6 +25,9 @@ public:
 			mNode = mNode->mNext;
 			_ASSERT_EXPR(mNode != nullptr, L"cannot seek iterator after end");
 		}
+
+		//BigO Notation: O(1)
+		//Reason: searchs through list of nodes to see if any or all are NULL, and returns the answer. 
 		void operator+=(unsigned rhs) {
 			for (unsigned i = 0; i < rhs; i++) {
 				mNode = mNode->mNext;
