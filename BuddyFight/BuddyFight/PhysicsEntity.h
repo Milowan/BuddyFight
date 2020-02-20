@@ -22,7 +22,8 @@ public:
 
 	void AddForce(Vector2 force);
 	void Accelerate();
-	void ResetAcceleration();
+	void ResetYAcceleration();
+	void ResetXAcceleration();
 
 	void UpdatePhysics();
 };

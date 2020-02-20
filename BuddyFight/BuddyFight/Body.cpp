@@ -14,10 +14,20 @@ void Body::HandleCollision(Entity* other)
 	PhysicsEntity* parent = (PhysicsEntity*)GetParent();
 	if (other->GetMask() == GROUND)
 	{
-		parent->SetPosition(parent->GetPosition() + GetOverlap());
-		parent->ResetAcceleration();
-		if (GetOverlap().y < 0)
-			parent->SetGrounded(true);
+		if (GetOverlap().y != 0)
+		{
+			if (GetOverlap().y < 0)
+			{
+				parent->SetGrounded(true);
+			}
+			parent->ResetYAcceleration();
+			parent->SetPosition(parent->GetPosition() + GetOverlap());
+		}
+		else
+		{
+			parent->ResetXAcceleration();
+			parent->SetPosition(parent->GetPosition() + GetOverlap());
+		}
 	}
 	if (other->GetMask() == WEAPON || other->GetMask() == FIST)
 	{

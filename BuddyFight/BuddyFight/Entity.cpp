@@ -18,7 +18,8 @@ Entity::Entity(Texture* nTexture, float x, float y) :
 	forwardVector(V2ZERO),
 	parent(NULL),
 	queued(false),
-	grounded(false)
+	grounded(false),
+	collCullRad(1000.0f)
 {}
 
 Entity::~Entity()
@@ -266,6 +267,14 @@ bool Entity::CheckCollision(Entity* other)
 	colliding = false;
 	if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
 	{
+		float tempX = pow((other->position.x - position.x), 2);
+		float tempY = pow((other->position.y - position.y), 2);
+		float tempR = pow(collCullRad, 2);
+		if (tempX + tempY > tempR)
+		{
+			return colliding;
+		}
+		
 		float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
 		float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
 		float aTop = GetPosition().y - (texture->GetHeight() * GetScale().y / 2);

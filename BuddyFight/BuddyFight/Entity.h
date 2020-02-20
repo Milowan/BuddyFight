@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cmath>
 #include "Types.h"
 #include "MathHelper.h"
 #include "Texture.h"
@@ -20,6 +21,9 @@ private:
 
 	Entity* parent;
 	vector<Entity*> children;
+
+	// Collision culling radius
+	float collCullRad;
 
 protected:
 

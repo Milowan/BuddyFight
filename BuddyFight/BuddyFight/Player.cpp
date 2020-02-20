@@ -14,7 +14,7 @@ void Player::Attack()
 		lFist->SetPunching(true);
 		lFist->SetForwardVector(Vector2(-1, 0));
 		lFist->AddForce(Vector2(strength, strength));
-		lFist->ResetAcceleration();
+		lFist->ResetYAcceleration();
 		lFist->SetPunching(false);
 	}
 }
@@ -252,19 +252,19 @@ void Player::GetInput()
 		if (inputP1->KeyPressed(SDL_SCANCODE_S))
 		{
 			Duck();
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP1->KeyPressed(SDL_SCANCODE_A))
 		{
 			SetForwardVector(-V2RIGHT * 2);
 			AddForce(Vector2(WALK_SPEED, 0));
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP1->KeyPressed(SDL_SCANCODE_D))
 		{
 			SetForwardVector(V2RIGHT * 2);
 			AddForce(Vector2(WALK_SPEED, 0));
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP1->KeyPressed(SDL_SCANCODE_C))
 		{
@@ -298,19 +298,19 @@ void Player::GetInput()
 		if (inputP2->KeyPressed(SDL_SCANCODE_K))
 		{
 			Duck();
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP2->KeyPressed(SDL_SCANCODE_J))
 		{
 			SetForwardVector(-V2RIGHT * 2);
 			AddForce(Vector2(WALK_SPEED, 0));
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP2->KeyPressed(SDL_SCANCODE_L))
 		{
 			SetForwardVector(V2RIGHT * 2);
 			AddForce(Vector2(WALK_SPEED, 0));
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 		if (inputP2->KeyPressed(SDL_SCANCODE_N))
 		{

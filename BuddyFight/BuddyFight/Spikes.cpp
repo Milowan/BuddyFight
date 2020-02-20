@@ -18,7 +18,7 @@ void Spikes::HandleCollision(Entity * other)
 		body = (Body*)other;
 		player = (Player*)body->GetParent();
 		player->TakeDamage(10);
-		player->ResetAcceleration();
+		player->ResetYAcceleration();
 		player->AddForce(Vector2(0, -15));
 	}
 }

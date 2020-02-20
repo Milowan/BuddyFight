@@ -70,13 +70,13 @@ void Weapon::HandleCollision(Entity* other)
 		if (overlapVector.y < 0)
 		{
 			SetPosition(GetPosition() + overlapVector);
-			ResetAcceleration();
+			ResetYAcceleration();
 			grounded = true;
 		}
 		if (overlapVector.y > 0)
 		{
 			SetPosition(GetPosition() + overlapVector);
-			ResetAcceleration();
+			ResetYAcceleration();
 		}
 	}
 }
