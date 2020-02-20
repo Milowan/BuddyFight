@@ -24,12 +24,12 @@ void PhysicsEntity::Accelerate()
 
 void PhysicsEntity::ResetYAcceleration()
 {
-	acceleration.y = 0;
+	acceleration.y = 0.0;
 }
 
 void PhysicsEntity::ResetXAcceleration()
 {
-	acceleration.x = 0;
+	acceleration.x = 0.0;
 }
 
 void PhysicsEntity::UpdatePhysics()

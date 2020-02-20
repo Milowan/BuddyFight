@@ -249,18 +249,18 @@ void Player::GetInput()
 		{
 			Jump();
 		}
-		if (inputP1->KeyPressed(SDL_SCANCODE_S))
+		if (inputP1->KeyDown(SDL_SCANCODE_S))
 		{
 			Duck();
 			ResetYAcceleration();
 		}
-		if (inputP1->KeyPressed(SDL_SCANCODE_A))
+		if (inputP1->KeyDown(SDL_SCANCODE_A))
 		{
 			SetForwardVector(-V2RIGHT * 2);
-			AddForce(Vector2(WALK_SPEED, 0));
+			AddForce(Vector2(-WALK_SPEED, 0));
 			ResetYAcceleration();
 		}
-		if (inputP1->KeyPressed(SDL_SCANCODE_D))
+		if (inputP1->KeyDown(SDL_SCANCODE_D))
 		{
 			SetForwardVector(V2RIGHT * 2);
 			AddForce(Vector2(WALK_SPEED, 0));
