@@ -11,6 +11,8 @@ BulletPool* BulletPool::GetInstance()
 }
 
 
+////////////////////////                                    bigO Notation: O(N)         basic array insertion
+
 BulletPool::BulletPool()
 {
     EntityPool* pool = EntityPool::GetInstance();
@@ -21,6 +23,7 @@ BulletPool::BulletPool()
     }
 }
 
+////////////////////////                                    bigO Notation: O(N)         basic array deletion
 BulletPool::~BulletPool()
 {
     for (int i = 0; i < MAX_BULLETS; i++)
@@ -29,6 +32,7 @@ BulletPool::~BulletPool()
     }
 }
 
+////////////////////////                                    bigO Notation: O(N)         basic array search
 Bullet* BulletPool::GetInActiveBullet()
 {
     for (int i = 0; i < MAX_BULLETS; i++)
