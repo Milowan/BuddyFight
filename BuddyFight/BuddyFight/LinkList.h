@@ -26,7 +26,7 @@ public:
 			_ASSERT_EXPR(mNode != nullptr, L"cannot seek iterator after end");
 		}
 
-		//BigO Notation: O(1)
+		//BigO Notation: O(N)
 		//Reason: searchs through list of nodes to see if any or all are NULL, and returns the answer. 
 		void operator+=(unsigned rhs) {
 			for (unsigned i = 0; i < rhs; i++) {
