@@ -29,5 +29,6 @@ void Bullet::Update()
 	if (GetActive())
 	{
 		SetPosition(GetPosition() + (mForward * mSpeed * mTimer->GetDeltaTime()));
+		CheckMoved();
 	}
 }

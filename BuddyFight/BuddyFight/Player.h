@@ -53,7 +53,7 @@ protected:
 	static const int MAX_STRENGTH = 10;
 	static const int MAX_PUNCH_DISTANCE = 50;
 	static const int MAX_JUMP_HEIGHT = 1000;
-	static const int WALK_SPEED = 60;
+	static const int MOVE_SPEED = 40;
 
 	void Attack();
 	void Duck();

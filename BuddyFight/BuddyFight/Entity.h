@@ -24,6 +24,9 @@ private:
 
 	// Collision culling radius
 	float collCullRad;
+	// Flag for checking if something has moved so we dont have to check its collisions multiple times when its sitting still
+	bool hasMoved;
+	Vector2 prevPos;
 
 protected:
 
@@ -37,6 +40,10 @@ protected:
 	bool queued;
 	bool grounded;
 	bool colliding;
+
+	bool GetHasMoved();
+	void ToggleHasMoved();
+	void CheckMoved();
 
 public:
 
@@ -87,6 +94,7 @@ public:
 
 	bool CheckCollision(Entity* other);
 	virtual void HandleCollision(Entity* other) {};
+
 
 	void Render();
 

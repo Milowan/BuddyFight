@@ -34,3 +34,8 @@ void Body::HandleCollision(Entity* other)
 		parent->HandleCollision(other);
 	}
 }
+
+void Body::Update()
+{
+	CheckMoved();
+}

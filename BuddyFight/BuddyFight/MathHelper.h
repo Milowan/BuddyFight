@@ -34,6 +34,24 @@ struct Vector2
 		return *this;
 	}
 
+	bool operator!=(const Vector2 rhs)
+	{
+		if (x != rhs.x || y != rhs.y)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool operator==(const Vector2 rhs)
+	{
+		if (x == rhs.x && y == rhs.y)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	const Vector2& operator-=(const Vector2& rhs)
 	{
 		x -= rhs.x;

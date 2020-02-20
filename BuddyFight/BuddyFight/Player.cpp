@@ -113,7 +113,7 @@ Player::Player(bool p1) :
 	alive = true;
 	hasWeapon = false;
 	isJumping = false;
-	maxSpeed = WALK_SPEED;
+	maxSpeed = MOVE_SPEED;
 }
 
 Player::~Player()
@@ -257,13 +257,11 @@ void Player::GetInput()
 		if (inputP1->KeyDown(SDL_SCANCODE_A))
 		{
 			SetForwardVector(-V2RIGHT * 2);
-			AddForce(Vector2(-WALK_SPEED, 0));
 			ResetYAcceleration();
 		}
 		if (inputP1->KeyDown(SDL_SCANCODE_D))
 		{
 			SetForwardVector(V2RIGHT * 2);
-			AddForce(Vector2(WALK_SPEED, 0));
 			ResetYAcceleration();
 		}
 		if (inputP1->KeyPressed(SDL_SCANCODE_C))
@@ -303,13 +301,13 @@ void Player::GetInput()
 		if (inputP2->KeyPressed(SDL_SCANCODE_J))
 		{
 			SetForwardVector(-V2RIGHT * 2);
-			AddForce(Vector2(WALK_SPEED, 0));
+			AddForce(Vector2(MOVE_SPEED, 0));
 			ResetYAcceleration();
 		}
 		if (inputP2->KeyPressed(SDL_SCANCODE_L))
 		{
 			SetForwardVector(V2RIGHT * 2);
-			AddForce(Vector2(WALK_SPEED, 0));
+			AddForce(Vector2(MOVE_SPEED, 0));
 			ResetYAcceleration();
 		}
 		if (inputP2->KeyPressed(SDL_SCANCODE_N))
@@ -390,8 +388,9 @@ void Player::Update()
 	}
 
 	UpdatePhysics();
-
 	UpdateChildren();
 
 	Die();
+
+	CheckMoved();
 }

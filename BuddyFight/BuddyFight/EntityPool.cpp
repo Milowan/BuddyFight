@@ -39,6 +39,7 @@ void EntityPool::Update()
 		{
 			for (int j = 0; j < pool.size(); ++j)
 			{
+
 				if (pool[i] != pool[j] && pool[j]->GetActive())
 				{
 					if (pool[i]->CheckCollision(pool[j]))

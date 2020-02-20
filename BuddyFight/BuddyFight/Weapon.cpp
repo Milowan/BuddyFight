@@ -26,6 +26,7 @@ void Weapon::Collect()
 void Weapon::Update()
 {
 	UpdatePhysics();
+	CheckMoved();
 	if (!isCollected)
 	{
 		currentWidth = GetTexture()->GetWidth();

@@ -157,6 +157,7 @@ void Entity::UpdateChildren()
 	for (int i = 0; i < children.size(); ++i)
 	{
 		children[i]->Update();
+		CheckMoved();
 	}
 }
 
@@ -244,6 +245,7 @@ your performance especially if we scaled the game to 1 million entities which is
 
 bool Entity::CheckCollision(Entity* other)
 {
+
 	for (int i = 0; i < children.size(); ++i)
 	{
 		if (children[i]->CheckCollision(other))
@@ -265,67 +267,98 @@ bool Entity::CheckCollision(Entity* other)
 		}
 	}
 	colliding = false;
-	if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
+	if (GetHasMoved())
 	{
-		float tempX = pow((other->position.x - position.x), 2);
-		float tempY = pow((other->position.y - position.y), 2);
-		float tempR = pow(collCullRad, 2);
-		if (tempX + tempY > tempR)
+		if (texture != NULL && other->GetTexture() != NULL && mask != NONE && other->mask != NONE)
 		{
-			return colliding;
-		}
-		
-		float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
-		float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
-		float aTop = GetPosition().y - (texture->GetHeight() * GetScale().y / 2);
-		float aBottom = GetPosition().y + (texture->GetHeight() * GetScale().y / 2);
-		float bLeft = other->GetPosition().x - (other->texture->GetWidth() * other->GetScale().x / 2);
-		float bRight = other->GetPosition().x + (other->texture->GetWidth() * other->GetScale().x / 2);
-		float bTop = other->GetPosition().y - (other->texture->GetHeight() * other->GetScale().y / 2);
-		float bBottom = other->GetPosition().y + (other->texture->GetHeight() * other->GetScale().y / 2);
+			float tempX = pow((other->position.x - position.x), 2);
+			float tempY = pow((other->position.y - position.y), 2);
+			float tempR = pow(collCullRad, 2);
+			if (tempX + tempY > tempR)
+			{
+				return colliding;
+			}
 
-		overlapVector = Vector2(0.0f, 0.0f);
-		float diffX = 0.0f;
-		float diffY = 0.0f;
-		Vector2 difference = GetPosition() - other->GetPosition();
+			float aLeft = GetPosition().x - (texture->GetWidth() * GetScale().x / 2);
+			float aRight = GetPosition().x + (texture->GetWidth() * GetScale().x / 2);
+			float aTop = GetPosition().y - (texture->GetHeight() * GetScale().y / 2);
+			float aBottom = GetPosition().y + (texture->GetHeight() * GetScale().y / 2);
+			float bLeft = other->GetPosition().x - (other->texture->GetWidth() * other->GetScale().x / 2);
+			float bRight = other->GetPosition().x + (other->texture->GetWidth() * other->GetScale().x / 2);
+			float bTop = other->GetPosition().y - (other->texture->GetHeight() * other->GetScale().y / 2);
+			float bBottom = other->GetPosition().y + (other->texture->GetHeight() * other->GetScale().y / 2);
 
-		if (GetPosition().x >= other->GetPosition().x)
-		{
-			diffX = bRight - aLeft;
-		}
-		else
-		{
-			diffX = -(aRight - bLeft);
-		}
+			overlapVector = Vector2(0.0f, 0.0f);
+			float diffX = 0.0f;
+			float diffY = 0.0f;
+			Vector2 difference = GetPosition() - other->GetPosition();
 
-		if (GetPosition().y >= other->GetPosition().y)
-		{
-			diffY = bBottom - aTop;
-		}
-		else
-		{
-			diffY = -(aBottom - bTop);
-		}
+			if (GetPosition().x >= other->GetPosition().x)
+			{
+				diffX = bRight - aLeft;
+			}
+			else
+			{
+				diffX = -(aRight - bLeft);
+			}
 
-		if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
-		{
-			overlapVector.y = diffY;
-		}
-		else
-		{
-			overlapVector.x = diffX;
-		}
+			if (GetPosition().y >= other->GetPosition().y)
+			{
+				diffY = bBottom - aTop;
+			}
+			else
+			{
+				diffY = -(aBottom - bTop);
+			}
 
-		if (aBottom >= bTop &&
-			aTop <= bBottom &&
-			aLeft <= bRight &&
-			aRight >= bLeft)
-		{
-			colliding = true;
+			if ((diffX >= 0.0f && diffY >= 0.0f && diffX > diffY) || (diffX < 0.0f && diffY >= 0.0f && -diffX > diffY) || (diffX >= 0.0f && diffY < 0.0f && diffX > -diffY) || (diffX < 0.0f && diffY < 0.0f && -diffX > -diffY))
+			{
+				overlapVector.y = diffY;
+			}
+			else
+			{
+				overlapVector.x = diffX;
+			}
+
+			if (aBottom >= bTop &&
+				aTop <= bBottom &&
+				aLeft <= bRight &&
+				aRight >= bLeft)
+			{
+				colliding = true;
+			}
 		}
 	}
 
 	return colliding;
+}
+
+bool Entity::GetHasMoved()
+{
+	return hasMoved;
+}
+
+void Entity::ToggleHasMoved()
+{
+	if (hasMoved)
+	{
+		hasMoved = false;
+	}
+	else
+		hasMoved = true;
+}
+
+void Entity::CheckMoved()
+{
+	if (GetPosition() != prevPos)
+	{
+		hasMoved = true;
+	}
+	else
+	{
+		hasMoved = false;
+	}
+	prevPos = GetPosition();
 }
 
 void Entity::Render()
