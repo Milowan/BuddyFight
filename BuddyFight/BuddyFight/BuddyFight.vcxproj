@@ -194,6 +194,7 @@ xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="HingePlatformEast.h" />
     <ClInclude Include="HingePlatformWest.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LinkList.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="PhysicsEntity.h" />

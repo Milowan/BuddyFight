@@ -11,13 +11,15 @@
 #include "BasePlatform.h"
 #include "Crate.h"
 #include "Spikes.h"
+#include <string>;
+#include <sstream>;
+#include "UIHud.h";
+#include "LinkList.h"
+
 //Weapon includes
 #include "Pistol.h"
 #include "Sword.h"
 #include "Spear.h"
-#include <string>;
-#include <sstream>;
-#include "UIHud.h";
 
 
 class TestLevel : public Scene
@@ -27,6 +29,8 @@ class TestLevel : public Scene
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		SceneManager* mSceneManager;
+		LinkList<Player*> players;
+		LinkList<Player*>::Iterator iterator;
 
 		//Entities
 		Player* player1;

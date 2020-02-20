@@ -3,6 +3,7 @@
 TestLevel::TestLevel() :
 	Scene(new Texture("Background.png")),
 	uiHud(NULL)
+
 {}
 
 
@@ -29,11 +30,13 @@ void TestLevel::InitializeScene()
 	player1->SetPosition(player1->GetPosition());
 	player1->SetScale(Vector2(0.25, 0.25));
 	pool->AddEntity(player1);
+	players.insert(iterator,player1);
 
 	player2 = new Player(false);
 	player2->SetPosition(player2->GetPosition());
 	player2->SetScale(Vector2(0.25, 0.25));
 	pool->AddEntity(player2);
+	players.insert(iterator, player2);
 
 	chainPlatform1 = new ChainPlatform(1 * Graphics::BLOCK_WIDTH, 1 * Graphics::BLOCK_HEIGHT);
 	pool->AddEntity(chainPlatform1);
@@ -146,7 +149,6 @@ TestLevel::~TestLevel()
 	mInputManager = nullptr;
 	mAudioManager = nullptr;
 	mSceneManager = nullptr;
-
 
 	delete player1;
 	player1 = nullptr;
