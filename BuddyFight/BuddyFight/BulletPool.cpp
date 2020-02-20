@@ -33,6 +33,12 @@ BulletPool::~BulletPool()
 }
 
 ////////////////////////                                    bigO Notation: O(N)         basic array search
+/* Steven 
+    
+    Can be improved, try utilizing a container for active/un-active objects to remove the loop.
+
+    Tip: Maps are sorted via key values - and to find said key it uses a binary search which is a O(log n) 
+*/
 Bullet* BulletPool::GetInActiveBullet()
 {
     for (int i = 0; i < MAX_BULLETS; i++)
